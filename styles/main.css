@@ -182,7 +182,7 @@ body {
     justify-content: center;
     text-align: center;
     overflow: hidden;
-    background: linear-gradient(135deg, rgba(15, 23, 42, 0.8) 0%, rgba(30, 41, 59, 0.8) 100%), url('../assets/images/hero_bg.jpg'); /* var(--color-bg-primary) */
+    background: linear-gradient(0deg, rgba(15, 23, 42, 1) 0%, rgba(30, 41, 59, 0.5) 100%), url('../assets/images/hero_bg.jpg'); /* var(--color-bg-primary) */
     background-size: cover;
     background-position: center;
     background-attachment: fixed;
