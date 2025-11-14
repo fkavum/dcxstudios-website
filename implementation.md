@@ -36,3 +36,23 @@
    - Placeholder images using via.placeholder.com
    - Placeholder text clearly marked
    - Placeholder links ready for your content
+
+
+# For img and videos to be responsive
+
+
+## Changes Made:
+
+1. **Videos**: Removed fixed `width` and `height` attributes from the video elements and added responsive CSS styling
+2. **Video container**: Updated `.featured-game-gif` to use flexbox with wrapping and proper constraints
+3. **Gallery images**: Added `max-width: 100%` and `object-fit: cover` to prevent overflow
+4. **Containers**: Added `max-width: 100%` and `overflow: hidden` to parent containers to prevent content from exceeding screen width
+5. **Global rule**: Added a base rule ensuring all `img` and `video` elements are responsive by default
+6. **Mobile-specific styles**: On mobile (768px and below), videos stack vertically and take full width
+
+The featured-game section should now be mobile-friendly:
+- Videos scale down and don't exceed screen width
+- Gallery images are constrained to their containers
+- On mobile, videos stack vertically for better viewing
+
+All changes maintain the existing design while ensuring proper responsiveness across device sizes.
