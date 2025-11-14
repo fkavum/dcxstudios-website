@@ -164,16 +164,8 @@
                                 <img src="assets/images/crossle-1.webp" alt="Game Screenshot 1" class="featured-gallery-image">
                             </div>
 
-
-                            <div class="featured-gallery-item">
-                                <img src="assets/images/crossle-1.webp" alt="Game Screenshot 1" class="featured-gallery-image">
-                            </div>
-                            <div class="featured-gallery-item">
-                                <img src="assets/images/crossle-1.webp" alt="Game Screenshot 1" class="featured-gallery-image">
-                            </div>
-                            <div class="featured-gallery-item">
-                                <img src="assets/images/crossle-1.webp" alt="Game Screenshot 1" class="featured-gallery-image">
-                            </div>
+                          
+                     
                             <div class="featured-gallery-item">
                                 <img src="assets/images/crossle-2.webp" alt="Game Screenshot 2" class="featured-gallery-image">
                             </div>
@@ -183,6 +175,19 @@
                         </div>
                         <!-- Mobile Pagination Controls -->
                         <div class="gallery-mobile-controls">
+                            <button class="gallery-nav-btn gallery-nav-prev" aria-label="Previous image">
+                                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M15 18L9 12L15 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                </svg>
+                            </button>
+                            <button class="gallery-nav-btn gallery-nav-next" aria-label="Next image">
+                                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M9 18L15 12L9 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                </svg>
+                            </button>
+                        </div>
+                        <!-- Desktop Navigation Controls -->
+                        <div class="gallery-desktop-controls">
                             <button class="gallery-nav-btn gallery-nav-prev" aria-label="Previous image">
                                 <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                                     <path d="M15 18L9 12L15 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
@@ -491,6 +496,105 @@
             // Set initial cursor
             if (isDesktop()) {
                 galleryGrid.style.cursor = 'grab';
+            }
+        })();
+
+        // Desktop Arrow Navigation for Gallery
+        (function() {
+            const gallery = document.querySelector('.featured-game-gallery');
+            if (!gallery) return;
+
+            const galleryGrid = gallery.querySelector('.featured-gallery-grid');
+            const desktopControls = gallery.querySelector('.gallery-desktop-controls');
+            if (!galleryGrid || !desktopControls) return;
+
+            const prevBtn = desktopControls.querySelector('.gallery-nav-prev');
+            const nextBtn = desktopControls.querySelector('.gallery-nav-next');
+            
+            if (!prevBtn || !nextBtn) return;
+
+            // Check if we're on desktop
+            function isDesktop() {
+                return window.innerWidth > 768;
+            }
+
+            // Update button states based on scroll position
+            function updateButtonStates() {
+                if (!isDesktop()) {
+                    prevBtn.disabled = true;
+                    nextBtn.disabled = true;
+                    return;
+                }
+
+                const scrollLeft = galleryGrid.scrollLeft;
+                const scrollWidth = galleryGrid.scrollWidth;
+                const clientWidth = galleryGrid.clientWidth;
+                const maxScroll = scrollWidth - clientWidth;
+
+                // Enable/disable buttons based on scroll position
+                prevBtn.disabled = scrollLeft <= 0;
+                nextBtn.disabled = scrollLeft >= maxScroll - 1; // -1 for rounding errors
+            }
+
+            // Scroll functions
+            function scrollLeft() {
+                if (!isDesktop()) return;
+                const itemWidth = galleryGrid.querySelector('.featured-gallery-item').offsetWidth;
+                const gap = parseInt(getComputedStyle(galleryGrid).gap) || 16;
+                const scrollAmount = itemWidth + gap;
+                galleryGrid.scrollBy({
+                    left: -scrollAmount,
+                    behavior: 'smooth'
+                });
+            }
+
+            function scrollRight() {
+                if (!isDesktop()) return;
+                const itemWidth = galleryGrid.querySelector('.featured-gallery-item').offsetWidth;
+                const gap = parseInt(getComputedStyle(galleryGrid).gap) || 16;
+                const scrollAmount = itemWidth + gap;
+                galleryGrid.scrollBy({
+                    left: scrollAmount,
+                    behavior: 'smooth'
+                });
+            }
+
+            // Event listeners
+            prevBtn.addEventListener('click', scrollLeft);
+            nextBtn.addEventListener('click', scrollRight);
+
+            // Update button states on scroll
+            galleryGrid.addEventListener('scroll', updateButtonStates);
+
+            // Update button states on resize
+            let resizeTimeout;
+            window.addEventListener('resize', () => {
+                clearTimeout(resizeTimeout);
+                resizeTimeout = setTimeout(() => {
+                    updateButtonStates();
+                }, 100);
+            });
+
+            // Initial state update
+            updateButtonStates();
+
+            // Update after images load (in case images affect layout)
+            const images = galleryGrid.querySelectorAll('img');
+            let imagesLoaded = 0;
+            images.forEach(img => {
+                if (img.complete) {
+                    imagesLoaded++;
+                } else {
+                    img.addEventListener('load', () => {
+                        imagesLoaded++;
+                        if (imagesLoaded === images.length) {
+                            updateButtonStates();
+                        }
+                    });
+                }
+            });
+            if (imagesLoaded === images.length) {
+                updateButtonStates();
             }
         })();
     </script>
