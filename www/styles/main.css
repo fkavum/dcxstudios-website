@@ -327,11 +327,26 @@ img, video {
     /* gap: var(--spacing-lg); */
 }
 
+.featured-game-title-wrapper {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-md);
+    margin-bottom: var(--spacing-sm);
+}
+
+.featured-game-icon {
+    width: 48px;
+    height: 48px;
+    border-radius: var(--radius-md);
+    object-fit: cover;
+    flex-shrink: 0;
+}
+
 .featured-game-title {
     font-size: var(--font-size-3xl);
     font-weight: 700;
     color: var(--color-text-primary);
-    margin-bottom: var(--spacing-sm);
+    margin: 0;
     line-height: 1.2;
 }
 
@@ -1078,5 +1093,5 @@ h2 { margin: 0 0 6px; font-size: 22px; color: #f8f9ff; }
 
 @media (max-width:700px){
   .crossle-widget-dark { flex-direction:column; text-align:center; }
-  .cw-right { order: -1; margin-bottom:12px; }
+  .cw-right { display: none; }
 }
