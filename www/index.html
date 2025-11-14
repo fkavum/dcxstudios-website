@@ -163,6 +163,17 @@
                             <div class="featured-gallery-item">
                                 <img src="assets/images/crossle-1.webp" alt="Game Screenshot 1" class="featured-gallery-image">
                             </div>
+
+
+                            <div class="featured-gallery-item">
+                                <img src="assets/images/crossle-1.webp" alt="Game Screenshot 1" class="featured-gallery-image">
+                            </div>
+                            <div class="featured-gallery-item">
+                                <img src="assets/images/crossle-1.webp" alt="Game Screenshot 1" class="featured-gallery-image">
+                            </div>
+                            <div class="featured-gallery-item">
+                                <img src="assets/images/crossle-1.webp" alt="Game Screenshot 1" class="featured-gallery-image">
+                            </div>
                             <div class="featured-gallery-item">
                                 <img src="assets/images/crossle-2.webp" alt="Game Screenshot 2" class="featured-gallery-image">
                             </div>
@@ -419,6 +430,68 @@
 
             // Initialize
             updateGallery();
+        })();
+
+        // Desktop Mouse Drag Scrolling for Gallery
+        (function() {
+            const galleryGrid = document.querySelector('.featured-gallery-grid');
+            if (!galleryGrid) return;
+
+            let isDown = false;
+            let startX;
+            let scrollLeft;
+
+            // Check if we're on desktop (not mobile)
+            function isDesktop() {
+                return window.innerWidth > 768;
+            }
+
+            galleryGrid.addEventListener('mousedown', (e) => {
+                if (!isDesktop()) return;
+                isDown = true;
+                galleryGrid.style.cursor = 'grabbing';
+                startX = e.pageX - galleryGrid.offsetLeft;
+                scrollLeft = galleryGrid.scrollLeft;
+                e.preventDefault();
+            });
+
+            galleryGrid.addEventListener('mouseleave', () => {
+                if (!isDesktop()) return;
+                isDown = false;
+                galleryGrid.style.cursor = 'grab';
+            });
+
+            galleryGrid.addEventListener('mouseup', () => {
+                if (!isDesktop()) return;
+                isDown = false;
+                galleryGrid.style.cursor = 'grab';
+            });
+
+            galleryGrid.addEventListener('mousemove', (e) => {
+                if (!isDesktop() || !isDown) return;
+                e.preventDefault();
+                const x = e.pageX - galleryGrid.offsetLeft;
+                const walk = (x - startX) * 2; // Scroll speed multiplier
+                galleryGrid.scrollLeft = scrollLeft - walk;
+            });
+
+            // Handle window resize
+            let resizeTimeout;
+            window.addEventListener('resize', () => {
+                clearTimeout(resizeTimeout);
+                resizeTimeout = setTimeout(() => {
+                    if (!isDesktop()) {
+                        galleryGrid.style.cursor = '';
+                    } else {
+                        galleryGrid.style.cursor = 'grab';
+                    }
+                }, 100);
+            });
+
+            // Set initial cursor
+            if (isDesktop()) {
+                galleryGrid.style.cursor = 'grab';
+            }
         })();
     </script>
 </body>

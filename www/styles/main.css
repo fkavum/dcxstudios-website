@@ -478,20 +478,55 @@ img, video {
     position: relative;
 }
 
+/* FOR HORIZONTAL SCROLLING OF GALLERY IMAGES START*/
+/* For old version display: grid, grid-template-columns: repeat(3, 1fr);*/
 .featured-gallery-grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
+    display: flex;
     gap: var(--spacing-sm);
+    overflow-x: auto;
+    overflow-y: hidden;
+    scroll-behavior: smooth;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: thin;
+    scrollbar-color: var(--color-accent-primary) var(--color-bg-tertiary);
+    padding-bottom: var(--spacing-xs);
+    touch-action: pan-x;
+    cursor: grab;
 }
 
+.featured-gallery-grid:active {
+    cursor: grabbing;
+}
+
+.featured-gallery-grid::-webkit-scrollbar {
+    height: 8px;
+}
+
+.featured-gallery-grid::-webkit-scrollbar-track {
+    background: var(--color-bg-tertiary);
+    border-radius: var(--radius-sm);
+}
+
+.featured-gallery-grid::-webkit-scrollbar-thumb {
+    background: var(--color-accent-primary);
+    border-radius: var(--radius-sm);
+}
+
+.featured-gallery-grid::-webkit-scrollbar-thumb:hover {
+    background: var(--color-accent-secondary);
+}
+
+/* For old version display: width: 100%; max-width: 100%; no flex etc..*/
 .featured-gallery-item {
     border-radius: var(--radius-sm);
     overflow: hidden;
     background-color: var(--color-bg-tertiary);
-    width: 100%;
-    max-width: 100%;
+    flex: 0 0 auto;
+    width: calc(33.333% - var(--spacing-sm) * 2 / 3);
+    min-width: 280px;
+    max-width: 400px;
 }
-
+/* FOR HORIZONTAL SCROLLING OF GALLERY IMAGES END*/
 .featured-gallery-image {
     width: 100%;
     max-width: 100%;
@@ -499,6 +534,11 @@ img, video {
     display: block;
     transition: transform var(--transition-slow);
     object-fit: cover;
+    user-select: none;
+    -webkit-user-drag: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    touch-action: pan-x;
 }
 
 .featured-gallery-item:hover .featured-gallery-image {
@@ -981,8 +1021,9 @@ img, video {
         max-width: 100%;
     }
     
-    .featured-gallery-grid {
-        grid-template-columns: repeat(2, 1fr);
+    .featured-gallery-item {
+        width: calc(50% - var(--spacing-sm) / 2);
+        min-width: 300px;
     }
     
     .about-content {
@@ -1080,8 +1121,17 @@ img, video {
     }
     
     .featured-gallery-grid {
+        display: grid;
         grid-template-columns: 1fr;
         position: relative;
+        overflow-x: hidden;
+        overflow-y: visible;
+    }
+    
+    .featured-gallery-item {
+        width: 100%;
+        max-width: 100%;
+        min-width: auto;
     }
     
     .featured-game-gif {

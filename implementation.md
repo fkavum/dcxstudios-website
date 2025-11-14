@@ -56,3 +56,28 @@ The featured-game section should now be mobile-friendly:
 - On mobile, videos stack vertically for better viewing
 
 All changes maintain the existing design while ensuring proper responsiveness across device sizes.
+
+
+
+
+# Mobile Gallery Pagination
+
+**Mobile-only features (max-width: 768px):**
+1. Paginated gallery — shows one image at a time
+2. Left/right arrow buttons — overlay the images for navigation
+3. Swipe support — swipe left/right to navigate
+4. Dot indicators — bottom dots show the current image and allow direct navigation
+
+**Desktop behavior:**
+- Default grid layout (3 columns) remains unchanged
+- All images visible at once
+- Pagination controls hidden
+
+**Implementation details:**
+- JavaScript detects mobile vs desktop and adjusts behavior
+- Touch events handle swipe gestures (minimum 50px swipe distance)
+- Buttons are disabled at the first/last image
+- Responsive: adapts when window is resized
+- Accessibility: ARIA labels and roles included
+
+The gallery now supports mobile pagination with arrows, swipe, and dots, while desktop keeps the original grid layout.
