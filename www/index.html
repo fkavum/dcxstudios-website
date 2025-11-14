@@ -170,6 +170,24 @@
                                 <img src="assets/images/crossle-3.webp" alt="Game Screenshot 3" class="featured-gallery-image">
                             </div>
                         </div>
+                        <!-- Mobile Pagination Controls -->
+                        <div class="gallery-mobile-controls">
+                            <button class="gallery-nav-btn gallery-nav-prev" aria-label="Previous image">
+                                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M15 18L9 12L15 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                </svg>
+                            </button>
+                            <button class="gallery-nav-btn gallery-nav-next" aria-label="Next image">
+                                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M9 18L15 12L9 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                </svg>
+                            </button>
+                        </div>
+                        <div class="gallery-dots" role="tablist" aria-label="Gallery pagination">
+                            <button class="gallery-dot active" aria-label="Go to image 1" data-index="0" role="tab" aria-selected="true"></button>
+                            <button class="gallery-dot" aria-label="Go to image 2" data-index="1" role="tab" aria-selected="false"></button>
+                            <button class="gallery-dot" aria-label="Go to image 3" data-index="2" role="tab" aria-selected="false"></button>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -265,6 +283,143 @@
                 mobileMenuToggle.classList.toggle('active');
             });
         }
+
+        // Mobile Gallery Pagination
+        (function() {
+            const gallery = document.querySelector('.featured-game-gallery');
+            if (!gallery) return;
+
+            const galleryGrid = gallery.querySelector('.featured-gallery-grid');
+            const galleryItems = gallery.querySelectorAll('.featured-gallery-item');
+            const prevBtn = gallery.querySelector('.gallery-nav-prev');
+            const nextBtn = gallery.querySelector('.gallery-nav-next');
+            const dots = gallery.querySelectorAll('.gallery-dot');
+            
+            let currentIndex = 0;
+            const totalItems = galleryItems.length;
+            
+            // Check if we're on mobile (max-width: 768px)
+            function isMobile() {
+                return window.innerWidth <= 768;
+            }
+
+            // Update gallery display
+            function updateGallery() {
+                if (!isMobile()) {
+                    // Desktop: show all items in grid
+                    galleryItems.forEach((item, index) => {
+                        item.style.display = '';
+                        item.style.transform = '';
+                    });
+                    return;
+                }
+
+                // Mobile: show only current item
+                galleryItems.forEach((item, index) => {
+                    if (index === currentIndex) {
+                        item.style.display = 'block';
+                        item.style.transform = 'translateX(0)';
+                    } else {
+                        item.style.display = 'none';
+                    }
+                });
+
+                // Update dots
+                dots.forEach((dot, index) => {
+                    if (index === currentIndex) {
+                        dot.classList.add('active');
+                        dot.setAttribute('aria-selected', 'true');
+                    } else {
+                        dot.classList.remove('active');
+                        dot.setAttribute('aria-selected', 'false');
+                    }
+                });
+
+                // Update button states
+                if (prevBtn) prevBtn.disabled = currentIndex === 0;
+                if (nextBtn) nextBtn.disabled = currentIndex === totalItems - 1;
+            }
+
+            // Navigate to specific index
+            function goToIndex(index) {
+                if (index < 0 || index >= totalItems) return;
+                currentIndex = index;
+                updateGallery();
+            }
+
+            // Go to next
+            function next() {
+                if (currentIndex < totalItems - 1) {
+                    goToIndex(currentIndex + 1);
+                }
+            }
+
+            // Go to previous
+            function prev() {
+                if (currentIndex > 0) {
+                    goToIndex(currentIndex - 1);
+                }
+            }
+
+            // Swipe detection
+            let touchStartX = 0;
+            let touchEndX = 0;
+            const minSwipeDistance = 50;
+
+            function handleTouchStart(e) {
+                if (!isMobile()) return;
+                touchStartX = e.changedTouches[0].screenX;
+            }
+
+            function handleTouchEnd(e) {
+                if (!isMobile()) return;
+                touchEndX = e.changedTouches[0].screenX;
+                handleSwipe();
+            }
+
+            function handleSwipe() {
+                const swipeDistance = touchEndX - touchStartX;
+                if (Math.abs(swipeDistance) < minSwipeDistance) return;
+
+                if (swipeDistance > 0) {
+                    // Swipe right - go to previous
+                    prev();
+                } else {
+                    // Swipe left - go to next
+                    next();
+                }
+            }
+
+            // Event listeners
+            if (prevBtn) {
+                prevBtn.addEventListener('click', prev);
+            }
+            if (nextBtn) {
+                nextBtn.addEventListener('click', next);
+            }
+
+            dots.forEach((dot, index) => {
+                dot.addEventListener('click', () => goToIndex(index));
+            });
+
+            // Swipe events
+            if (galleryGrid) {
+                galleryGrid.addEventListener('touchstart', handleTouchStart, { passive: true });
+                galleryGrid.addEventListener('touchend', handleTouchEnd, { passive: true });
+            }
+
+            // Handle window resize
+            let resizeTimeout;
+            window.addEventListener('resize', () => {
+                clearTimeout(resizeTimeout);
+                resizeTimeout = setTimeout(() => {
+                    updateGallery();
+                }, 100);
+            });
+
+            // Initialize
+            updateGallery();
+        })();
     </script>
 </body>
 </html>
