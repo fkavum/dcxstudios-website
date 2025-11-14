@@ -38,6 +38,49 @@
    - Placeholder links ready for your content
 
 
+# Featured game section was not mobile friendly, image witdth s was exceeding screen width
+
+
+## Changes Made:
+
+1. **Videos**: Removed fixed `width` and `height` attributes from the video elements and added responsive CSS styling
+2. **Video container**: Updated `.featured-game-gif` to use flexbox with wrapping and proper constraints
+3. **Gallery images**: Added `max-width: 100%` and `object-fit: cover` to prevent overflow
+4. **Containers**: Added `max-width: 100%` and `overflow: hidden` to parent containers to prevent content from exceeding screen width
+5. **Global rule**: Added a base rule ensuring all `img` and `video` elements are responsive by default
+6. **Mobile-specific styles**: On mobile (768px and below), videos stack vertically and take full width
+
+The featured-game section should now be mobile-friendly:
+- Videos scale down and don't exceed screen width
+- Gallery images are constrained to their containers
+- On mobile, videos stack vertically for better viewing
+
+All changes maintain the existing design while ensuring proper responsiveness across device sizes.
+
+
+# Mobile video support
+
+
+**HTML updates:**
+- Added `webkit-playsinline` for older iOS Safari
+- Added `x5-playsinline` for Android browsers (WeChat, etc.)
+- Added `preload="auto"` to ensure the video loads on mobile
+
+**CSS updates:**
+- Added `object-fit: cover` for proper video scaling
+- Added `-webkit-playsinline: true` in CSS for additional iOS support
+- Added `appearance: none` to remove default browser styling
+
+The video already had the essential attributes (`autoplay`, `loop`, `muted`, `playsinline`) required for autoplay on mobile browsers. These additions improve compatibility across different mobile browsers and devices.
+
+The video should now play properly on:
+- iOS Safari (including older versions)
+- Android Chrome
+- Android browsers (including WeChat and other Chinese browsers)
+- Other mobile browsers
+
+No linting errors found.
+
 # For img and videos to be responsive
 
 
