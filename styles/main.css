@@ -11,7 +11,8 @@
     --color-text-muted: #94A3B8;
     --color-border: #334155;
     --header-bg-color: #0f172af2;
-    
+
+
     /* Typography */
     --font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
     --font-size-base: 16px;
@@ -314,7 +315,7 @@ body {
 .featured-game-main {
     display: flex;
     flex-direction: column;
-    gap: var(--spacing-lg);
+    /* gap: var(--spacing-lg); */
 }
 
 .featured-game-title {
@@ -347,7 +348,7 @@ body {
     list-style: none;
     display: flex;
     flex-direction: column;
-    gap: var(--spacing-sm);
+    gap: var(--spacing-xs);
 }
 
 .featured-feature-item {
@@ -368,7 +369,7 @@ body {
 }
 
 .featured-game-cta {
-    margin-top: var(--spacing-md);
+    margin-top: var(--spacing-sm);
 }
 
 .play-store-button {
@@ -988,3 +989,54 @@ body {
     }
 }
 
+.crossle-widget-dark {
+  display: flex;
+  gap: 20px;
+  padding: 20px;
+  border-radius: 12px;
+  background: rgba(255,255,255,0.03); /* subtle, dark-friendly */
+  border: 1px solid rgba(255,255,255,0.08);
+  color: #e6e9ef;
+  font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial;
+  max-width: 940px;
+  margin: 12px auto;
+}
+
+.cw-left { flex: 1; }
+h2 { margin: 0 0 6px; font-size: 22px; color: #f8f9ff; }
+.cw-sub { margin: 0 0 12px; color: #c7ccda; }
+
+.cw-features { margin: 0 0 14px; padding-left: 18px; }
+.cw-features li { margin: 8px 0; color: #d9dce5; }
+
+.cw-cta-text { margin: 12px 0 18px; }
+
+.cw-cta {
+  display: inline-block;
+  padding: 10px 16px;
+  border-radius: 8px;
+  background: #246aff;
+  text-decoration: none;
+  color: #fff;
+  font-weight: 600;
+  transition: 0.15s ease;
+}
+.cw-cta:hover { opacity: 0.85; transform: translateY(-1px); }
+
+.cw-right { flex: 0 0 180px; display:flex; justify-content:center; align-items:center; }
+.cw-board { display:flex; gap:6px; flex-wrap:wrap; width:140px; justify-content:center; }
+
+.tile {
+  width:34px; height:34px;
+  border-radius:5px;
+  background: rgba(255,255,255,0.08);
+  display:flex; align-items:center; justify-content:center;
+  font-weight:700;
+  color:#f2f5ff;
+  border: 1px solid rgba(255,255,255,0.10);
+}
+
+@media (max-width:700px){
+  .crossle-widget-dark { flex-direction:column; text-align:center; }
+  .cw-right { order: -1; margin-bottom:12px; }
+}
