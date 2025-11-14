@@ -453,6 +453,10 @@ img, video {
     height: auto;
     border-radius: var(--radius-sm);
     display: block;
+    object-fit: cover;
+    -webkit-playsinline: true;
+    -webkit-appearance: none;
+    appearance: none;
 }
 
 .gif-placeholder {
