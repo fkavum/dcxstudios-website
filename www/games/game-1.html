@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -10,6 +11,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 </head>
+
 <body>
     <!-- Navigation -->
     <nav class="game-nav">
@@ -23,7 +25,6 @@
         <div class="container">
             <div class="game-header-content">
                 <div class="game-icon">
-                    <!-- Placeholder for game icon -->
                     <img src="../assets/images/icon.webp" alt="Game Icon" class="game-icon-image">
                 </div>
                 <div class="game-header-text">
@@ -37,29 +38,80 @@
     <!-- Game Gallery -->
     <section class="game-gallery">
         <div class="container">
-            <h2 class="section-title">Screenshots</h2>
-            <div class="gallery-grid">
-                <!-- Placeholder screenshots -->
-                <div class="gallery-item">
-                    <img src="../assets/images/crossle-1.webp" alt="Game Screenshot 1" class="gallery-image">
+            <h2 class="section-title">Media</h2>
+            <div class="featured-game-media">
+                <!-- Video Section -->
+                <div class="featured-game-gif">
+                    <video autoplay loop muted playsinline webkit-playsinline preload="auto" x5-playsinline
+                        style="max-width: 600px;">
+                        <source src="../assets/images/tobegif.mp4" type="video/mp4">
+                    </video>
                 </div>
-                <div class="gallery-item">
-                    <img src="../assets/images/crossle-2.webp" alt="Game Screenshot 2" class="gallery-image">
-                </div>
-                <div class="gallery-item">
-                    <img src="../assets/images/crossle-1.webp" alt="Game Screenshot 3" class="gallery-image">
-                </div>
-                <div class="gallery-item">
-                    <img src="../assets/images/crossle-3.webp" alt="Game Screenshot 4" class="gallery-image">
-                </div>
-            </div>
-            <!-- Video placeholder section -->
-            <div class="game-video">
-                <h2 class="section-title">Trailer</h2>
-                <div class="video-container">
-                     <video autoplay loop muted playsinline webkit-playsinline preload="auto" x5-playsinline>
-                            <source src="../assets/images/tobegif.mp4" type="video/mp4">
-                        </video>
+
+                <!-- Screenshots Gallery -->
+                <div class="featured-game-gallery">
+                    <div class="featured-gallery-grid">
+                        <div class="featured-gallery-item">
+                            <img src="../assets/images/crossle-1.webp" alt="Game Screenshot 1"
+                                class="featured-gallery-image">
+                        </div>
+                        <div class="featured-gallery-item">
+                            <img src="../assets/images/crossle-2.webp" alt="Game Screenshot 2"
+                                class="featured-gallery-image">
+                        </div>
+                        <div class="featured-gallery-item">
+                            <img src="../assets/images/crossle-1.webp" alt="Game Screenshot 3"
+                                class="featured-gallery-image">
+                        </div>
+                        <div class="featured-gallery-item">
+                            <img src="../assets/images/crossle-3.webp" alt="Game Screenshot 4"
+                                class="featured-gallery-image">
+                        </div>
+                    </div>
+                    <!-- Mobile Pagination Controls -->
+                    <div class="gallery-mobile-controls">
+                        <button class="gallery-nav-btn gallery-nav-prev" aria-label="Previous image">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none"
+                                xmlns="http://www.w3.org/2000/svg">
+                                <path d="M15 18L9 12L15 6" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                    stroke-linejoin="round" />
+                            </svg>
+                        </button>
+                        <button class="gallery-nav-btn gallery-nav-next" aria-label="Next image">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none"
+                                xmlns="http://www.w3.org/2000/svg">
+                                <path d="M9 18L15 12L9 6" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                    stroke-linejoin="round" />
+                            </svg>
+                        </button>
+                    </div>
+                    <!-- Desktop Navigation Controls -->
+                    <div class="gallery-desktop-controls">
+                        <button class="gallery-nav-btn gallery-nav-prev" aria-label="Previous image">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none"
+                                xmlns="http://www.w3.org/2000/svg">
+                                <path d="M15 18L9 12L15 6" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                    stroke-linejoin="round" />
+                            </svg>
+                        </button>
+                        <button class="gallery-nav-btn gallery-nav-next" aria-label="Next image">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none"
+                                xmlns="http://www.w3.org/2000/svg">
+                                <path d="M9 18L15 12L9 6" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                    stroke-linejoin="round" />
+                            </svg>
+                        </button>
+                    </div>
+                    <div class="gallery-dots" role="tablist" aria-label="Gallery pagination">
+                        <button class="gallery-dot active" aria-label="Go to image 1" data-index="0" role="tab"
+                            aria-selected="true"></button>
+                        <button class="gallery-dot" aria-label="Go to image 2" data-index="1" role="tab"
+                            aria-selected="false"></button>
+                        <button class="gallery-dot" aria-label="Go to image 3" data-index="2" role="tab"
+                            aria-selected="false"></button>
+                        <button class="gallery-dot" aria-label="Go to image 4" data-index="3" role="tab"
+                            aria-selected="false"></button>
+                    </div>
                 </div>
             </div>
         </div>
@@ -71,15 +123,15 @@
             <h2 class="section-title">About This Game</h2>
             <div class="description-content">
                 <p class="description-text">
-                    This is a placeholder description for Game Title 1. Replace this with your actual game description. 
+                    This is a placeholder description for Game Title 1. Replace this with your actual game description.
                     Describe the gameplay, story, unique features, and what makes your game special.
                 </p>
                 <p class="description-text">
-                    Add more paragraphs as needed to fully describe your game. Include information about the game's 
+                    Add more paragraphs as needed to fully describe your game. Include information about the game's
                     mechanics, art style, music, or any other aspects that players might find interesting.
                 </p>
                 <p class="description-text">
-                    You can also mention the development process, inspiration behind the game, or any awards or 
+                    You can also mention the development process, inspiration behind the game, or any awards or
                     recognition the game has received.
                 </p>
             </div>
@@ -124,7 +176,6 @@
         <div class="container">
             <div class="download-content">
                 <p class="download-text">Download on Google Play Store</p>
-                <!-- Placeholder for Google Play badge/link -->
                 <a href="#" class="download-button" target="_blank" rel="noopener noreferrer">
                     <span>Download on Google Play</span>
                 </a>
@@ -148,10 +199,356 @@
         </div>
     </footer>
 
+    <!-- Image Modal -->
+    <div id="imageModal" class="modal">
+        <button class="modal-close" aria-label="Close modal">&times;</button>
+        <img class="modal-content" id="modalImage" alt="Enlarged game screenshot">
+    </div>
+
     <script>
         // Update copyright year
         document.getElementById('current-year').textContent = new Date().getFullYear();
+
+        // Image Modal Functionality
+        (function () {
+            const modal = document.getElementById('imageModal');
+            const modalImg = document.getElementById('modalImage');
+            const closeBtn = document.querySelector('.modal-close');
+
+            // Get all gallery images
+            const galleryImages = document.querySelectorAll('.featured-gallery-image');
+
+            // Add click event to each gallery image
+            galleryImages.forEach(img => {
+                img.addEventListener('click', function () {
+                    modal.classList.add('show');
+                    modalImg.src = this.src;
+                    modalImg.alt = this.alt;
+
+                    // Prevent body scrolling when modal is open
+                    document.body.style.overflow = 'hidden';
+                });
+            });
+
+            // Close modal when clicking the close button
+            closeBtn.addEventListener('click', function () {
+                modal.classList.remove('show');
+                document.body.style.overflow = '';
+            });
+
+            // Close modal when clicking outside the image
+            modal.addEventListener('click', function (event) {
+                if (event.target === modal) {
+                    modal.classList.remove('show');
+                    document.body.style.overflow = '';
+                }
+            });
+
+            // Close modal with Escape key
+            document.addEventListener('keydown', function (event) {
+                if (event.key === 'Escape' && modal.classList.contains('show')) {
+                    modal.classList.remove('show');
+                    document.body.style.overflow = '';
+                }
+            });
+        })();
+
+        // Mobile Gallery Pagination
+        (function () {
+            const gallery = document.querySelector('.featured-game-gallery');
+            if (!gallery) return;
+
+            const galleryGrid = gallery.querySelector('.featured-gallery-grid');
+            const galleryItems = gallery.querySelectorAll('.featured-gallery-item');
+            const prevBtn = gallery.querySelector('.gallery-nav-prev');
+            const nextBtn = gallery.querySelector('.gallery-nav-next');
+            const dots = gallery.querySelectorAll('.gallery-dot');
+
+            let currentIndex = 0;
+            const totalItems = galleryItems.length;
+
+            // Check if we're on mobile (max-width: 768px)
+            function isMobile() {
+                return window.innerWidth <= 768;
+            }
+
+            // Update gallery display
+            function updateGallery() {
+                if (!isMobile()) {
+                    // Desktop: show all items in grid
+                    galleryItems.forEach((item, index) => {
+                        item.style.display = '';
+                        item.style.transform = '';
+                    });
+                    return;
+                }
+
+                // Mobile: show only current item
+                galleryItems.forEach((item, index) => {
+                    if (index === currentIndex) {
+                        item.style.display = 'block';
+                        item.style.transform = 'translateX(0)';
+                    } else {
+                        item.style.display = 'none';
+                    }
+                });
+
+                // Update dots
+                dots.forEach((dot, index) => {
+                    if (index === currentIndex) {
+                        dot.classList.add('active');
+                        dot.setAttribute('aria-selected', 'true');
+                    } else {
+                        dot.classList.remove('active');
+                        dot.setAttribute('aria-selected', 'false');
+                    }
+                });
+
+                // Update button states
+                if (prevBtn) prevBtn.disabled = currentIndex === 0;
+                if (nextBtn) nextBtn.disabled = currentIndex === totalItems - 1;
+            }
+
+            // Navigate to specific index
+            function goToIndex(index) {
+                if (index < 0 || index >= totalItems) return;
+                currentIndex = index;
+                updateGallery();
+            }
+
+            // Go to next
+            function next() {
+                if (currentIndex < totalItems - 1) {
+                    goToIndex(currentIndex + 1);
+                }
+            }
+
+            // Go to previous
+            function prev() {
+                if (currentIndex > 0) {
+                    goToIndex(currentIndex - 1);
+                }
+            }
+
+            // Swipe detection
+            let touchStartX = 0;
+            let touchEndX = 0;
+            const minSwipeDistance = 50;
+
+            function handleTouchStart(e) {
+                if (!isMobile()) return;
+                touchStartX = e.changedTouches[0].screenX;
+            }
+
+            function handleTouchEnd(e) {
+                if (!isMobile()) return;
+                touchEndX = e.changedTouches[0].screenX;
+                handleSwipe();
+            }
+
+            function handleSwipe() {
+                const swipeDistance = touchEndX - touchStartX;
+                if (Math.abs(swipeDistance) < minSwipeDistance) return;
+
+                if (swipeDistance > 0) {
+                    prev();
+                } else {
+                    next();
+                }
+            }
+
+            // Event listeners
+            if (prevBtn) {
+                prevBtn.addEventListener('click', prev);
+            }
+            if (nextBtn) {
+                nextBtn.addEventListener('click', next);
+            }
+
+            dots.forEach((dot, index) => {
+                dot.addEventListener('click', () => goToIndex(index));
+            });
+
+            // Swipe events
+            if (galleryGrid) {
+                galleryGrid.addEventListener('touchstart', handleTouchStart, { passive: true });
+                galleryGrid.addEventListener('touchend', handleTouchEnd, { passive: true });
+            }
+
+            // Handle window resize
+            let resizeTimeout;
+            window.addEventListener('resize', () => {
+                clearTimeout(resizeTimeout);
+                resizeTimeout = setTimeout(() => {
+                    updateGallery();
+                }, 100);
+            });
+
+            // Initialize
+            updateGallery();
+        })();
+
+        // Desktop Mouse Drag Scrolling for Gallery
+        (function () {
+            const galleryGrid = document.querySelector('.featured-gallery-grid');
+            if (!galleryGrid) return;
+
+            let isDown = false;
+            let startX;
+            let scrollLeft;
+
+            // Check if we're on desktop (not mobile)
+            function isDesktop() {
+                return window.innerWidth > 768;
+            }
+
+            galleryGrid.addEventListener('mousedown', (e) => {
+                if (!isDesktop()) return;
+                isDown = true;
+                galleryGrid.style.cursor = 'grabbing';
+                startX = e.pageX - galleryGrid.offsetLeft;
+                scrollLeft = galleryGrid.scrollLeft;
+                e.preventDefault();
+            });
+
+            galleryGrid.addEventListener('mouseleave', () => {
+                if (!isDesktop()) return;
+                isDown = false;
+                galleryGrid.style.cursor = 'grab';
+            });
+
+            galleryGrid.addEventListener('mouseup', () => {
+                if (!isDesktop()) return;
+                isDown = false;
+                galleryGrid.style.cursor = 'grab';
+            });
+
+            galleryGrid.addEventListener('mousemove', (e) => {
+                if (!isDesktop() || !isDown) return;
+                e.preventDefault();
+                const x = e.pageX - galleryGrid.offsetLeft;
+                const walk = (x - startX) * 2; // Scroll speed multiplier
+                galleryGrid.scrollLeft = scrollLeft - walk;
+            });
+
+            // Handle window resize
+            let resizeTimeout;
+            window.addEventListener('resize', () => {
+                clearTimeout(resizeTimeout);
+                resizeTimeout = setTimeout(() => {
+                    if (!isDesktop()) {
+                        galleryGrid.style.cursor = '';
+                    } else {
+                        galleryGrid.style.cursor = 'grab';
+                    }
+                }, 100);
+            });
+
+            // Set initial cursor
+            if (isDesktop()) {
+                galleryGrid.style.cursor = 'grab';
+            }
+        })();
+
+        // Desktop Arrow Navigation for Gallery
+        (function () {
+            const gallery = document.querySelector('.featured-game-gallery');
+            if (!gallery) return;
+
+            const galleryGrid = gallery.querySelector('.featured-gallery-grid');
+            const desktopControls = gallery.querySelector('.gallery-desktop-controls');
+            if (!galleryGrid || !desktopControls) return;
+
+            const prevBtn = desktopControls.querySelector('.gallery-nav-prev');
+            const nextBtn = desktopControls.querySelector('.gallery-nav-next');
+
+            if (!prevBtn || !nextBtn) return;
+
+            // Check if we're on desktop
+            function isDesktop() {
+                return window.innerWidth > 768;
+            }
+
+            // Update button states based on scroll position
+            function updateButtonStates() {
+                if (!isDesktop()) {
+                    prevBtn.disabled = true;
+                    nextBtn.disabled = true;
+                    return;
+                }
+
+                const scrollLeft = galleryGrid.scrollLeft;
+                const scrollWidth = galleryGrid.scrollWidth;
+                const clientWidth = galleryGrid.clientWidth;
+                const maxScroll = scrollWidth - clientWidth;
+
+                // Enable/disable buttons based on scroll position
+                prevBtn.disabled = scrollLeft <= 0;
+                nextBtn.disabled = scrollLeft >= maxScroll - 1; // -1 for rounding errors
+            }
+
+            // Scroll functions
+            function scrollLeft() {
+                if (!isDesktop()) return;
+                const itemWidth = galleryGrid.querySelector('.featured-gallery-item').offsetWidth;
+                const gap = parseInt(getComputedStyle(galleryGrid).gap) || 16;
+                const scrollAmount = itemWidth + gap;
+                galleryGrid.scrollBy({
+                    left: -scrollAmount,
+                    behavior: 'smooth'
+                });
+            }
+
+            function scrollRight() {
+                if (!isDesktop()) return;
+                const itemWidth = galleryGrid.querySelector('.featured-gallery-item').offsetWidth;
+                const gap = parseInt(getComputedStyle(galleryGrid).gap) || 16;
+                const scrollAmount = itemWidth + gap;
+                galleryGrid.scrollBy({
+                    left: scrollAmount,
+                    behavior: 'smooth'
+                });
+            }
+
+            // Event listeners
+            prevBtn.addEventListener('click', scrollLeft);
+            nextBtn.addEventListener('click', scrollRight);
+
+            // Update button states on scroll
+            galleryGrid.addEventListener('scroll', updateButtonStates);
+
+            // Update button states on resize
+            let resizeTimeout;
+            window.addEventListener('resize', () => {
+                clearTimeout(resizeTimeout);
+                resizeTimeout = setTimeout(() => {
+                    updateButtonStates();
+                }, 100);
+            });
+
+            // Initial state update
+            updateButtonStates();
+
+            // Update after images load (in case images affect layout)
+            const images = galleryGrid.querySelectorAll('img');
+            let imagesLoaded = 0;
+            images.forEach(img => {
+                if (img.complete) {
+                    imagesLoaded++;
+                } else {
+                    img.addEventListener('load', () => {
+                        imagesLoaded++;
+                        if (imagesLoaded === images.length) {
+                            updateButtonStates();
+                        }
+                    });
+                }
+            });
+            if (imagesLoaded === images.length) {
+                updateButtonStates();
+            }
+        })();
     </script>
 </body>
-</html>
 
+</html>
