@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+<html lang="tr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DCX Studios</title>
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap"
+        rel="stylesheet">
+
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#ffdb2d',
+                        'background-light': '#f8f8f5',
+                        'background-dark': '#23220f',
+                        'dark-surface': '#181811',
+                        'accent-gray': '#e6e6db',
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                    },
+                    aspectRatio: {
+                        '16/10': '16 / 10',
+                    }
+                }
+            }
+        }
+    </script>
+
+    <!-- Custom Styles -->
+    <link rel="stylesheet" href="styles.css">
+
+    <!-- Iconify -->
+    <script src="https://code.iconify.design/iconify-icon/1.0.7/iconify-icon.min.js"></script>
+</head>
+
+<body class="bg-background-light font-sans text-dark-surface">
+    <div class="flex flex-col min-h-screen">
+        <!-- Header -->
+        <header class="w-full backdrop-blur bg-white/95 border-b border-gray-200 sticky top-0 z-[80]">
+            <div class="container mx-auto px-4 lg:px-6 py-3 lg:py-4 flex items-center justify-between relative z-[80]">
+                <!-- Logo -->
+                <a href="/" class="flex gap-2 items-center">
+                    <div class="size-12 rounded-full flex items-center justify-center text-primary bg-dark-surface">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="2em" height="2em" viewBox="0 0 24 24">
+                            <path fill="currentColor"
+                                d="M4.55 19q-1.275 0-1.975-.888T2.05 15.95l1.05-7.5q.225-1.5 1.338-2.475T7.05 5h9.9q1.5 0 2.613.975T20.9 8.45l1.05 7.5q.175 1.275-.525 2.163T19.45 19q-.525 0-.975-.187t-.825-.563L15.4 16H8.6l-2.25 2.25q-.375.375-.825.563T4.55 19M17 13q.425 0 .713-.288T18 12t-.288-.712T17 11t-.712.288T16 12t.288.713T17 13m-2-3q.425 0 .713-.288T16 9t-.288-.712T15 8t-.712.288T14 9t.288.713T15 10m-7.25 3h1.5v-1.75H11v-1.5H9.25V8h-1.5v1.75H6v1.5h1.75z" />
+                        </svg>
+                    </div>
+                    <div class="font-bold text-xl">DCX Studios</div>
+                </a>
+
+                <!-- Desktop Menu -->
+                <nav class="hidden md:block">
+                    <ul class="flex space-x-6">
+                        <li><a href="/"
+                                class="text-dark-surface hover:text-dark-surface/70 transition-colors duration-200 font-medium">Home</a>
+                        </li>
+                        <li><a href="/about"
+                                class="text-dark-surface hover:text-dark-surface/70 transition-colors duration-200 font-medium">About</a>
+                        </li>
+                        <li><a href="/services"
+                                class="text-dark-surface hover:text-dark-surface/70 transition-colors duration-200 font-medium">Services</a>
+                        </li>
+                        <li><a href="/contact"
+                                class="text-dark-surface hover:text-dark-surface/70 transition-colors duration-200 font-medium">Contact</a>
+                        </li>
+                    </ul>
+                </nav>
+
+                <div class="flex items-center gap-3">
+                    <button
+                        class="bg-primary text-dark-surface px-6 py-3 rounded-full font-bold hover:opacity-90 transition-opacity duration-200 hidden md:flex">
+                        Play Crossle
+                    </button>
+
+                    <!-- Mobile Menu Toggle -->
+                    <button type="button" id="mobile-menu-toggle"
+                        class="md:hidden w-10 h-10 flex items-center justify-center rounded-lg hover:bg-gray-100 transition-colors duration-200 relative z-[80]"
+                        aria-label="Toggle menu">
+                        <span id="icon-menu" class="block">
+                            <svg class="w-6 h-6 text-dark-surface" fill="none" stroke="currentColor"
+                                viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M4 6h16M4 12h16M4 18h16" />
+                            </svg>
+                        </span>
+                        <span id="icon-close" class="hidden">
+                            <svg class="w-6 h-6 text-dark-surface" fill="none" stroke="currentColor"
+                                viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M6 18L18 6M6 6l12 12" />
+                            </svg>
+                        </span>
+                    </button>
+                </div>
+            </div>
+        </header>
+
+        <!-- Mobile Menu Overlay & Drawer -->
+        <div id="mobile-menu-overlay"
+            class="mobile-menu-overlay fixed inset-0 bg-black/50 backdrop-blur-sm z-[60] md:hidden"></div>
+        <nav id="mobile-menu-drawer"
+            class="mobile-menu-drawer fixed top-0 left-0 right-0 h-screen bg-white z-[70] md:hidden overflow-y-auto pt-[73px]">
+            <ul class="flex flex-col p-6 space-y-1">
+                <li><a href="/"
+                        class="block text-dark-surface hover:text-primary transition-colors duration-200 font-semibold text-lg py-4 px-4 rounded-xl hover:bg-gray-50 active:bg-gray-100 mobile-link">Home</a>
+                </li>
+                <li><a href="/about"
+                        class="block text-dark-surface hover:text-primary transition-colors duration-200 font-semibold text-lg py-4 px-4 rounded-xl hover:bg-gray-50 active:bg-gray-100 mobile-link">About</a>
+                </li>
+                <li><a href="/services"
+                        class="block text-dark-surface hover:text-primary transition-colors duration-200 font-semibold text-lg py-4 px-4 rounded-xl hover:bg-gray-50 active:bg-gray-100 mobile-link">Services</a>
+                </li>
+                <li><a href="/contact"
+                        class="block text-dark-surface hover:text-primary transition-colors duration-200 font-semibold text-lg py-4 px-4 rounded-xl hover:bg-gray-50 active:bg-gray-100 mobile-link">Contact</a>
+                </li>
+                <li class="pt-6">
+                    <button
+                        class="bg-primary text-dark-surface px-6 py-3 rounded-full font-bold hover:opacity-90 transition-opacity duration-200 w-full justify-center text-base">
+                        Play Crossle
+                    </button>
+                </li>
+            </ul>
+        </nav>
+
+        <main class="flex-1">
+            <!-- Home Hero -->
+            <div class="flex flex-col">
+                <section class="relative bg-dark-surface text-white py-20 lg:py-32 overflow-hidden rounded-b-[3rem]">
+                    <div class="absolute -bottom-24 -left-24 w-64 h-64 bg-primary/20 rounded-full blur-[100px]"></div>
+                    <div class="absolute -top-24 -right-24 w-64 h-64 bg-primary/20 rounded-full blur-[100px]"></div>
+
+                    <div class="container mx-auto px-6 relative z-10">
+                        <div class="grid lg:grid-cols-2 gap-20 items-center">
+                            <div class="flex flex-col gap-8 text-center lg:text-left">
+                                <div
+                                    class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/10 border border-white/10 w-fit mx-auto lg:mx-0 backdrop-blur-sm">
+                                    <span class="w-2 h-2 rounded-full bg-primary animate-pulse"></span>
+                                    <span class="text-xs font-medium text-white/90 uppercase tracking-wider">New Release
+                                        v1.0</span>
+                                </div>
+                                <h1 class="text-5xl lg:text-7xl font-black leading-[0.95] tracking-tight">
+                                    Unleash your <br>
+                                    <span
+                                        class="text-transparent bg-clip-text bg-gradient-to-r from-primary to-white">inner
+                                        genius.</span>
+                                </h1>
+                                <p class="text-lg text-white/70 max-w-xl mx-auto lg:mx-0 leading-relaxed">
+                                    Crossle isn't just a puzzle game. It's a daily ritual for your brain. Dive into
+                                    infinite procedural levels and compete globally.
+                                </p>
+                                <div class="flex flex-wrap justify-center lg:justify-start gap-4 pt-4">
+                                    <button
+                                        class="bg-primary text-dark-surface px-6 py-3 rounded-full font-bold hover:opacity-90 transition-opacity duration-200">App
+                                        Store</button>
+                                    <button
+                                        class="bg-primary text-dark-surface px-6 py-3 rounded-full font-bold hover:opacity-90 transition-opacity duration-200">Google
+                                        Play</button>
+                                </div>
+                            </div>
+                            <div
+                                class="w-full max-w-md mx-auto rotate-5 hover:rotate-0 transition-transform duration-500">
+                                <img src="./images/hero-mockup.png" alt="App Mockup"
+                                    class="w-full h-auto rounded-3xl shadow-2xl">
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <section class="bg-white w-full border-b border-gray-200">
+                    <div class="container mx-auto flex justify-center py-12">
+                        <div class="flex flex-col gap-2 items-center pr-6">
+                            <div class="text-3xl text-dark-surface font-semibold">4.8/5</div>
+                            <p class="text-sm text-dark-surface">App Store Rating</p>
+                        </div>
+                        <div class="flex flex-col gap-2 items-center border-x border-gray-200 px-6">
+                            <div class="text-3xl text-dark-surface font-semibold">100+</div>
+                            <p class="text-sm text-dark-surface">Downloads</p>
+                        </div>
+                        <div class="flex flex-col gap-2 items-center pl-6">
+                            <div class="text-3xl text-dark-surface font-semibold">#1</div>
+                            <p class="text-sm text-dark-surface">Puzzle Game</p>
+                        </div>
+                    </div>
+                </section>
+            </div>
+
+            <!-- Game Component -->
+            <div class="game-container" id="game-container">
+                <div class="wheel-container" id="wheel-container">
+                    <svg class="connection-layer" viewBox="0 0 320 320">
+                        <path id="connection-path" d="" stroke="#6366f1" stroke-width="3" fill="none"
+                            stroke-linecap="round" stroke-linejoin="round"></path>
+                    </svg>
+
+                    <button class="center-icon" id="shuffle-btn" title="Harfleri Karıştır">
+                        <iconify-icon icon="lucide:shuffle"></iconify-icon>
+                    </button>
+
+                    <div class="letter-circle" id="letter-circle">
+                        <!-- Letters injected by JS -->
+                    </div>
+                </div>
+
+                <div class="selected-word">
+                    <div class="word-display" id="word-display">
+                        <!-- Word injected by JS -->
+                    </div>
+                </div>
+            </div>
+
+            <!-- Gallery Component -->
+            <section class="bg-background-light w-full py-16 lg:py-24" id="gallery-app">
+                <div class="container mx-auto px-6">
+                    <div class="text-center mb-10 lg:mb-14">
+                        <h2 class="text-4xl lg:text-5xl font-black tracking-tight text-dark-surface">Gallery &amp; Media
+                        </h2>
+                        <p class="mt-3 text-sm lg:text-base text-dark-surface/60">A glimpse into the world of Crossle.
+                        </p>
+                    </div>
+
+                    <div class="grid gap-6 lg:grid-cols-[minmax(0,1fr)_270px] items-stretch">
+                        <!-- Main Display -->
+                        <div
+                            class="relative rounded-3xl overflow-hidden bg-white border border-gray-200 shadow-lg h-full flex flex-col group min-h-[500px]">
+                            <div class="flex-1 min-h-0 bg-gradient-to-br from-accent-gray to-gray-100 flex items-center justify-center relative"
+                                id="gallery-main-container">
+                                <!-- JS Injected Content -->
+                            </div>
+
+                            <!-- Navigation Arrows -->
+                            <button id="gallery-prev"
+                                class="absolute left-4 top-1/2 -translate-y-1/2 w-12 h-12 rounded-full bg-white/90 backdrop-blur-sm shadow-lg border border-gray-200 flex items-center justify-center transition-all duration-300 opacity-0 group-hover:opacity-100 hover:scale-110 focus:opacity-100 z-10"
+                                aria-label="Previous image">
+                                <svg class="w-6 h-6 text-dark-surface" fill="none" stroke="currentColor"
+                                    viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                        d="M15 19l-7-7 7-7" />
+                                </svg>
+                            </button>
+
+                            <button id="gallery-next"
+                                class="absolute right-4 top-1/2 -translate-y-1/2 w-12 h-12 rounded-full bg-white/90 backdrop-blur-sm shadow-lg border border-gray-200 flex items-center justify-center transition-all duration-300 opacity-0 group-hover:opacity-100 hover:scale-110 focus:opacity-100 z-10"
+                                aria-label="Next image">
+                                <svg class="w-6 h-6 text-dark-surface" fill="none" stroke="currentColor"
+                                    viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                        d="M9 5l7 7-7 7" />
+                                </svg>
+                            </button>
+
+                            <!-- Counter -->
+                            <div class="absolute top-4 right-4 px-3 py-1.5 rounded-full bg-black/60 backdrop-blur-sm text-white text-sm font-medium z-10"
+                                id="gallery-counter">
+                                1 / 4
+                            </div>
+                        </div>
+
+                        <!-- Thumbnails -->
+                        <div class="flex flex-row lg:flex-col gap-3 lg:max-h-[600px] overflow-x-auto lg:overflow-x-visible overflow-y-visible lg:overflow-y-auto scrollbar-thin p-1 -m-1 pb-2 lg:pb-1"
+                            id="gallery-thumbnails">
+                            <!-- JS Injected Thumbnails -->
+                        </div>
+                    </div>
+
+                    <div class="mt-8 text-center">
+                        <p class="text-xs text-dark-surface/40">Use arrow keys to navigate • Click thumbnails to select
+                        </p>
+                    </div>
+                </div>
+            </section>
+        </main>
+
+        <!-- Footer -->
+        <footer class="bg-dark-surface border-t border-white/10 pt-12 lg:pt-16 pb-6 lg:pb-8 text-white">
+            <div class="container mx-auto px-4 lg:px-6 mb-8 lg:mb-12">
+                <div class="max-w-md">
+                    <div class="mb-6">
+                        <!-- App Logo Dark -->
+                        <a href="/" class="flex gap-2 items-center">
+                            <div
+                                class="size-12 rounded-full flex items-center justify-center text-dark-surface bg-white">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="2em" height="2em" viewBox="0 0 24 24">
+                                    <path fill="currentColor"
+                                        d="M4.55 19q-1.275 0-1.975-.888T2.05 15.95l1.05-7.5q.225-1.5 1.338-2.475T7.05 5h9.9q1.5 0 2.613.975T20.9 8.45l1.05 7.5q.175 1.275-.525 2.163T19.45 19q-.525 0-.975-.187t-.825-.563L15.4 16H8.6l-2.25 2.25q-.375.375-.825.563T4.55 19M17 13q.425 0 .713-.288T18 12t-.288-.712T17 11t-.712.288T16 12t.288.713T17 13m-2-3q.425 0 .713-.288T16 9t-.288-.712T15 8t-.712.288T14 9t.288.713T15 10m-7.25 3h1.5v-1.75H11v-1.5H9.25V8h-1.5v1.75H6v1.5h1.75z" />
+                                </svg>
+                            </div>
+                            <div class="font-bold text-xl">DCX Studios</div>
+                        </a>
+                    </div>
+                    <p class="text-accent-gray text-sm lg:text-base leading-relaxed">
+                        Creating memorable digital experiences. Follow us on our journey to redefine mobile gaming.
+                    </p>
+                </div>
+            </div>
+            <div class="container mx-auto px-4 lg:px-6 border-t border-white/10 pt-6 lg:pt-8">
+                <p class="text-accent-gray text-xs lg:text-sm">
+                    &copy; 2025 DCX Studios. Bütün hakları sakladım bulamazsınız.
+                </p>
+            </div>
+        </footer>
+    </div>
+
+    <!-- Logic -->
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.9.3/dist/confetti.browser.min.js"></script>
+    <script src="script.js"></script>
+</body>
+
+</html>

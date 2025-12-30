@@ -290,7 +290,7 @@ video {
 
 /* About Section */
 .about {
-    padding: var(--spacing-2xl) 0;
+    padding: var(--spacing-lg) 0;
     background-color: var(--color-bg-primary);
     /* background: linear-gradient(180deg, var(--color-bg-primary) 0%, var(--color-bg-secondary) 100%); */
     position: relative;
@@ -420,7 +420,7 @@ video {
 
 /* Enhanced Featured Game Section */
 .featured-game {
-    padding: var(--spacing-2xl) 0;
+    padding: var(--spacing-lg) 0;
     background-color: var(--color-bg-secondary);
     position: relative;
 }
@@ -439,7 +439,7 @@ video {
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: var(--spacing-xl);
-    align-items: start;
+    align-items: center;
     width: 100%;
     max-width: 100%;
     overflow: hidden;
@@ -489,14 +489,18 @@ video {
 
 .featured-game-cta {
     margin-top: var(--spacing-lg);
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--spacing-md);
 }
 
 .play-store-button {
     display: inline-flex;
-    flex-direction: column;
+    flex-direction: row;
     align-items: center;
-    justify-content: center;
-    padding: 1.25rem 2rem;
+    justify-content: flex-start;
+    gap: var(--spacing-sm);
+    padding: 0.875rem 1.75rem;
     background: linear-gradient(135deg, var(--color-accent-primary) 0%, var(--color-accent-secondary) 100%);
     color: var(--color-text-primary);
     text-decoration: none;
@@ -507,6 +511,11 @@ video {
     min-width: 200px;
     position: relative;
     overflow: hidden;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.play-store-button.app-store {
+    background: linear-gradient(135deg, #334155 0%, #0F172A 100%);
 }
 
 .play-store-button::before {
@@ -526,16 +535,32 @@ video {
 
 .play-store-button:hover {
     transform: translateY(-3px);
-    box-shadow: var(--shadow-glow);
+    box-shadow: 0 0 20px rgba(99, 102, 241, 0.4);
 }
 
-.play-store-text {
-    font-size: var(--font-size-sm);
-    opacity: 0.9;
+.play-store-button.app-store:hover {
+    box-shadow: 0 0 20px rgba(99, 100, 110, 0.4);
+    border-color: rgba(255,255,255,0.3);
 }
 
-.play-store-name {
-    font-size: var(--font-size-lg);
+.store-button-content {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    line-height: 1.2;
+}
+
+.store-sub {
+    font-size: 0.75rem;
+    opacity: 0.8;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.store-title {
+    font-size: 1.125rem;
+    font-weight: 700;
 }
 
 .featured-game-media {
@@ -797,7 +822,7 @@ video {
 
 /* Projects Section */
 .projects {
-    padding: var(--spacing-2xl) 0;
+    padding: var(--spacing-lg) 0;
     background-color: var(--color-bg-primary);
     position: relative;
 }
@@ -870,7 +895,7 @@ video {
 
 /* Contact Section */
 .contact {
-    padding: var(--spacing-2xl) 0;
+    padding: var(--spacing-lg) 0;
     background-color: var(--color-bg-secondary);
     position: relative;
 }
@@ -1350,15 +1375,15 @@ video {
 .crossle-widget-dark {
     display: flex;
     gap: 20px;
-    padding: 20px;
+    padding: 24px;
     border-radius: 12px;
     background: rgba(255, 255, 255, 0.03);
     /* subtle, dark-friendly */
     border: 1px solid rgba(255, 255, 255, 0.08);
     color: #e6e9ef;
     font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial;
-    max-width: 940px;
-    margin: 12px auto;
+    width: 100%;
+    margin: 24px 0;
 }
 
 .cw-left {
