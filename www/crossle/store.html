@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Redirecting…</title>
+  <script>
+    const ua = navigator.userAgent || navigator.vendor || window.opera;
+
+    if (/android/i.test(ua)) {
+      window.location.href = "https://play.google.com/store/apps/details?id=com.dcxstudios.dcm";
+    } else if (/iPad|iPhone|iPod/.test(ua)) {
+      window.location.href = "https://apps.apple.com/tr/app/crossle/id6751605835";
+    } else {
+      window.location.href = "https://dcxstudios.org/#featured-game";
+    }
+  </script>
+</head>
+<body></body>
+</html>
