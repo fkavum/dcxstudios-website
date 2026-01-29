@@ -1,0 +1,17 @@
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  padding: 0;
+  margin: 0;
+  scroll-behavior: smooth;
+  font-family: var(--font-sans);
+  height: 100%;
+  overflow-x: clip;
+}
+
+a {
+  text-decoration: none;
+}
