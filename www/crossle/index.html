@@ -4,39 +4,168 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Crossle Support</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600&display=swap" rel="stylesheet">
     <style>
+        :root {
+            --primary: #6366f1;
+            --primary-hover: #4f46e5;
+            --bg: #0f172a;
+            --card-bg: #1e293b;
+            --text-main: #f8fafc;
+            --text-muted: #94a3b8;
+            --accent: #10b981;
+        }
+
         body {
-            font-family: Arial, sans-serif;
-            margin: 40px;
-            line-height: 1.6;
-            color: #333;
+            font-family: 'Outfit', sans-serif;
+            background-color: var(--bg);
+            color: var(--text-main);
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            padding: 20px;
         }
+
+        .container {
+            max-width: 600px;
+            width: 100%;
+            background: var(--card-bg);
+            padding: 40px;
+            border-radius: 24px;
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
         h1 {
-            color: #222;
+            font-size: 2.5rem;
+            font-weight: 600;
+            margin-bottom: 32px;
+            text-align: center;
+            background: linear-gradient(to right, #818cf8, #c084fc);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
         }
+
         .section {
-            margin-bottom: 30px;
+            margin-bottom: 24px;
+            padding: 16px;
+            border-radius: 16px;
+            background: rgba(255, 255, 255, 0.03);
+            transition: transform 0.2s, background 0.2s;
         }
+
+        .section:hover {
+            transform: translateY(-2px);
+            background: rgba(255, 255, 255, 0.05);
+        }
+
+        h2 {
+            font-size: 1.1rem;
+            color: var(--text-muted);
+            margin: 0 0 8px 0;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        p {
+            margin: 0;
+            font-size: 1rem;
+        }
+
         a {
-            color: #0066cc;
+            color: var(--primary);
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.2s;
+            display: inline-block;
+            margin-top: 4px;
+        }
+
+        a:hover {
+            color: var(--primary-hover);
+        }
+
+        .qr-section {
+            margin-top: 40px;
+            text-align: center;
+            padding-top: 32px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .qr-section h2 {
+            margin-bottom: 16px;
+        }
+
+        .qr-code {
+            max-width: 180px;
+            border-radius: 16px;
+            padding: 12px;
+            background: white;
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+            margin: 0 auto;
+        }
+
+        .qr-code img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        @media (max-width: 480px) {
+            .container {
+                padding: 24px;
+            }
+            h1 {
+                font-size: 2rem;
+            }
         }
     </style>
 </head>
 <body>
-    <div class="section">
-        <h2>Support Page</h2>
-        <p>Our Support and FAQ page:<br/>
-        <a href="./crossle_support.html">Support</a></p>
-    </div>
-    <div class="section">
-        <h2>Terms Of Service</h2>
-        <p>You can view our TOS here:<br/>
-        <a href="./crossle_terms.html">Terms of Service</a></p>
-    </div>
-    <div class="section">
-        <h2>Privacy Policy</h2>
-        <p>You can view our privacy policy here:<br/>
-        <a href="./crossle_privacy_policy.html">Privacy Policy</a></p>
+    <div class="container">
+        <h1>Crossle</h1>
+        
+        <div class="section">
+            <h2>Support Page</h2>
+            <p>Our Support and FAQ page:<br/>
+            <a href="./crossle_support.html">Access Support</a></p>
+        </div>
+
+        <div class="section">
+            <h2>Legal</h2>
+            <div style="display: flex; gap: 24px;">
+                <div>
+                    <a href="./crossle_terms.html">Terms of Service</a>
+                </div>
+                <div>
+                    <a href="./crossle_privacy_policy.html">Privacy Policy</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2>Store</h2>
+            <p>Download our game:<br/>
+            <a href="./store.html">Go to Store</a></p>
+        </div>
+
+        <div class="section">
+            <h2>Investors</h2>
+            <p>View our pitch deck:<br/>
+            <a href="https://docs.google.com/presentation/d/1vTbh4QY107OErd3SE92x9UxdHMti7P_oaDEEO23ipAc/edit?usp=drive_link">Presentation</a></p>
+        </div>
+
+        <div class="qr-section">
+            <h2>Scan to Download</h2>
+            <div class="qr-code">
+                <img src="./assets/images/store-qr.png" alt="Store QR Code">
+            </div>
+        </div>
     </div>
 </body>
 </html>
