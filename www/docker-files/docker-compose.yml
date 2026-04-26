@@ -9,3 +9,8 @@ services:
     ports:
       - "8080:80"  # Tarayıcıdan 8080 ile erişirsin, konteyner içinde 80 çalışır
     restart: always
+    networks:
+      - dokploy-network
+networks:
+  dokploy-network:
+    external: true
