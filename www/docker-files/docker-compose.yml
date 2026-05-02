@@ -6,11 +6,19 @@ services:
       context: ..
       dockerfile: ./docker-files/Dockerfile
     container_name: static_crossle_site_container
-    ports:
-      - "8080:80"  # Tarayıcıdan 8080 ile erişirsin, konteyner içinde 80 çalışır
     restart: always
     networks:
       - dokploy-network
 networks:
   dokploy-network:
     external: true
+
+
+  # - "traefik.enable=true"
+  #     # Change 'yourdomain.com' to your actual domain
+  #     - "traefik.http.routers.crossle.rule=Host(`yourdomain.com`)"
+  #     - "traefik.http.routers.crossle.entrypoints=websecure"
+  #     - "traefik.http.routers.crossle.tls=true"
+  #     - "traefik.http.routers.crossle.tls.certresolver=letsencrypt"
+  #     # Tell Traefik to hit port 80 inside the container
+  #     - "traefik.http.services.crossle.loadbalancer.server.port=80"
