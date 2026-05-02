@@ -4,7 +4,7 @@ services:
   web-sunucum:
     build:
       context: "../.."
-      dockerfile: "./crossle/docker-files/Dockerfile"
+      dockerfile: "./docker-files/crossle/Dockerfile"
     container_name: static_crossle_site_container
     restart: always
     networks:
