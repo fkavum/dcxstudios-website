@@ -4,24 +4,18 @@ services:
   web-sunucum:
     build:
       context: "../.."
-      dockerfile: "./docker-files/crossle/Dockerfile"
-    container_name: static_crossle_site_container
+      dockerfile: "./docker-files/dcx/Dockerfile"
+    container_name: static_dcx_site_container
     restart: always
     networks:
       - dokploy-network
     volumes:
       - ./config/default.conf:/etc/nginx/conf.d/default.conf:ro
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "10m"
+        max-file: "3"
 networks:
   dokploy-network:
     external: true
-
-
-
-  # - "traefik.enable=true"
-  #     # Change 'yourdomain.com' to your actual domain
-  #     - "traefik.http.routers.crossle.rule=Host(`yourdomain.com`)"
-  #     - "traefik.http.routers.crossle.entrypoints=websecure"
-  #     - "traefik.http.routers.crossle.tls=true"
-  #     - "traefik.http.routers.crossle.tls.certresolver=letsencrypt"
-  #     # Tell Traefik to hit port 80 inside the container
-  #     - "traefik.http.services.crossle.loadbalancer.server.port=80"
