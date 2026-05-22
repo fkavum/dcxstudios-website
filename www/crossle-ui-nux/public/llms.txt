@@ -1,0 +1,23 @@
+# Crossle
+
+> Crossle is a competitive online multiplayer word game for iOS and Android. Players compete in real-time crossword-style PvP duels, using strategy and vocabulary to outsmart opponents and climb global leaderboards.
+
+Developed by DCX Studios. Free to download and play.
+
+## Pages
+
+- [Home](https://crossle.app/): Main landing page with game overview, download links for App Store and Google Play, gameplay trailer, interactive letter-connecting demo, and feature highlights.
+- [Support](https://crossle.app/support): Help center with FAQ (bug reporting, progress recovery, how to play) and direct contact email.
+- [Privacy Policy](https://crossle.app/privacy-policy): Data collection and usage policy for the Crossle app.
+- [Terms & Conditions](https://crossle.app/terms): Terms of service for using the Crossle app.
+
+## Download
+
+- App Store (iOS): https://apps.apple.com/tr/app/crossle-online-word-duel/id6751605835
+- Google Play (Android): https://play.google.com/store/apps/details?id=com.dcxstudios.dcm
+
+## Contact
+
+- Developer: DCX Studios
+- Website: https://dcxstudios.org
+- Support Email: fatihkavum@gmail.com
