@@ -1,0 +1,53 @@
+---
+interface Props {
+    title: string;
+    subtitle?: string;
+    date?: string;
+    tags?: string[];
+    caseStudyLink?: string;
+}
+
+const { title, subtitle, date, tags = [], caseStudyLink } = Astro.props;
+---
+<div class="card">
+    <div class="card-header">
+        <h3 class="pixel-font">{title}</h3>
+        {date && <span class="dim">{date}</span>}
+    </div>
+    {subtitle && <p class="highlight">{subtitle}</p>}
+    <slot />
+    {tags.length > 0 && (
+        <div class="tag-row">
+            {tags.map(tag => <span class="tag">{tag}</span>)}
+        </div>
+    )}
+    {caseStudyLink && (
+        <a href={caseStudyLink} class="case-study-btn">
+            [ VIEW CASE STUDY ]
+        </a>
+    )}
+</div>
+
+<style>
+    .case-study-btn {
+        display: inline-block;
+        margin-top: 20px;
+        color: var(--secondary);
+        text-decoration: none;
+        font-family: 'Press Start 2P', cursive;
+        font-size: 0.7rem;
+        transition: 0.3s;
+        border: 1px dashed var(--secondary);
+        padding: 8px 12px;
+        background: rgba(255, 225, 0, 0.05);
+    }
+    
+    .case-study-btn:hover {
+        background: rgba(255, 225, 0, 0.2);
+        color: var(--primary);
+        border-color: var(--primary);
+        transform: translateX(5px);
+    }
+</style>
+
+

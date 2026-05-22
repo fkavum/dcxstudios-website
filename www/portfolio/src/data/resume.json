@@ -1,0 +1,102 @@
+{
+  "experience": [
+    {
+      "company": "Dcx Studios",
+      "role": "Owner",
+      "period": "2022 - present",
+      "tags": [
+        ".NET",
+        "AWS",
+        "Unity",
+        "CI/CD"
+      ],
+      "description": "I did crossle.",
+      "caseStudySlug": "dcxstudios"
+    },
+    {
+      "company": "Zynga",
+      "role": "Senior Software Engineer",
+      "period": "2022 - 2025",
+      "tags": [
+        ".NET",
+        "AWS",
+        "Unity",
+        "CI/CD"
+      ],
+      "description": "Managed backend-facing systems for <span class=\"highlight\">50M+ installs</span>. Engineered reconnection pipelines and content delivery via Unity Addressables."
+    },
+    {
+      "company": "Sir Studios",
+      "role": "Senior Software Developer",
+      "period": "2021 - 2022",
+      "tags": [
+        "PlayFab",
+        "Azure",
+        "Scalability"
+      ],
+      "description": "Led architecture for new products and maintained live systems for <span class=\"highlight\">200k+ DAU</span> using PlayFab and Azure Functions."
+    },
+    {
+      "company": "Playable Factory",
+      "role": "Software Developer",
+      "period": "2020 - 2021",
+      "tags": [
+        "C#",
+        "HTML5",
+        "WebGL",
+        "TypeScript"
+      ],
+      "description": "Built a custom HTML5 engine to replicate Unity behavior, keeping build sizes <span class=\"highlight\">under 1.5MB</span>."
+    },
+    {
+      "company": "Map Business Network",
+      "role": "Software Developer",
+      "period": "2018 - 2020",
+      "tags": [
+        "Php",
+        "MySQL",
+        "HTML5",
+        "MS SQL",
+        "VueJs"
+      ],
+      "description": "Automated end-to-end ERP integrations and B2B infrastructure for enterprise retail and automotive giants. Optimized mission-critical SQL queries and API processes, driving system performance down to the millisecond level."
+    }
+  ],
+  "skills": [
+    {
+      "category": "CORE_TECH",
+      "items": [
+        "C# / .NET (Expert)",
+        "Unity (6+ Years)",
+        "SQL & NoSQL",
+        "C++ / Unreal"
+      ]
+    },
+    {
+      "category": "INFRA_SKILLS",
+      "items": [
+        "AWS / Azure",
+        "Jenkins / Docker",
+        "Redis / Caching",
+        "Distributed Systems"
+      ]
+    }
+  ],
+  "socials": [
+    {
+      "platform": "LinkedIn",
+      "url": "https://www.linkedin.com/in/fkavum/",
+      "icon": "/icons/linkedin-svgrepo-com.svg"
+    },
+    {
+      "platform": "Github",
+      "url": "https://github.com/fkavum",
+      "icon": "/icons/instagram-svgrepo-com.svg"
+    },
+    {
+      "platform": "My Game Studio",
+      "url": "https://dcxstudios.org",
+      "icon": "/icons/dcx-color.png"
+    }
+  ]
+}

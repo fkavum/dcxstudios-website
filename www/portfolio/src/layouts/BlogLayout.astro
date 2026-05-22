@@ -1,0 +1,48 @@
+---
+import Layout from './Layout.astro';
+import Navigation from '../components/Navigation.astro';
+
+const { title } = Astro.props;
+---
+
+<Layout title={title}>
+    <Navigation />
+    
+    <div class="container">
+        <main>
+            <slot />
+        </main>
+
+        <footer>
+            <p>CONGRATULATIONS! YOU REACHED THE END. <br> fatihkavum@gmail.com | © 2026</p>
+        </footer>
+    </div>
+</Layout>
+
+<style is:global>
+    .back-btn { 
+        display: inline-block; 
+        margin-top: 40px;
+        margin-bottom: 30px; 
+        color: var(--accent); 
+        text-decoration: none;
+        cursor: pointer; 
+        font-family: 'Press Start 2P'; 
+        font-size: 0.7rem; 
+    }
+    .back-btn:hover { text-shadow: 2px 2px var(--secondary); }
+
+    article { font-size: 1.5rem; color: #ccc; }
+    article p { margin-bottom: 20px; }
+    article img { 
+        max-width: 100%; 
+        height: auto; 
+        margin: 2rem 0; 
+        border: 2px solid var(--primary);
+        box-shadow: 0 0 15px rgba(0, 242, 255, 0.2);
+    }
+
+    footer { color: #555; font-size: 0.9rem; }
+</style>
+
+

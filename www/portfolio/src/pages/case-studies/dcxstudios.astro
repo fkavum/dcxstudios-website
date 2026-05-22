@@ -1,0 +1,162 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import Navigation from "../../components/Navigation.astro";
+import Section from "../../components/Section.astro";
+---
+
+<Layout title="Case Study | Dcx Studios">
+    <Navigation />
+    
+    <div class="container">
+        <!-- 1. Hero / Özet Bölümü -->
+        <header class="case-study-hero">
+            <h1 class="pixel-font">CROSSLE</h1>
+            <p class="highlight" style="font-size: 1.2rem; margin-bottom: 20px;">Multiplayer Word Game</p>
+            
+            <div class="meta-info">
+                <p><span class="dim">Role:</span> Lead Developer / Gameplay & Backend Architect</p>
+            </div>
+            
+            <div class="tag-row" style="justify-content: center; margin-top: 20px;">
+                <span class="tag">Unity</span>
+                <span class="tag">C#</span>
+                <span class="tag">Docker</span>
+                <span class="tag">Redis</span>
+                <span class="tag">MySQL</span>
+                <span class="tag">Traefik</span>
+            </div>
+        </header>
+
+        <!-- 2. The Challenge -->
+        <Section id="challenge" title="THE_CHALLENGE">
+            <p style="font-size: 1.2rem; line-height: 1.6;">
+                To build a scalable backend infrastructure with low latency and optimized server costs where players can interact simultaneously.
+            </p>
+        </Section>
+
+        <!-- 3. Architecture & Solutions -->
+        <Section id="architecture" title="ARCHITECTURE_&_SOLUTIONS">
+            <div class="solution-block">
+                <h3 class="highlight">Design Patterns</h3>
+                <p>
+                    I established the in-game event system and modular structure using Dependency Injection and Observer patterns. This prevented spaghetti code and increased the testability of the system.
+                </p>
+            </div>
+
+            <div class="solution-block">
+                <h3 class="highlight">Backend / PaaS</h3>
+                <p>
+                    I deployed the game services as self-hosted using Dokploy, Traefik, and Docker. Traefik provided load balancing and optimized server resources.
+                </p>
+            </div>
+            
+            <div class="code-snippet">
+                <pre is:raw><code>
+// Example Event-Driven Structure
+public class GameEventManager {
+    public static event Action&lt;Player&gt; OnPlayerJoined;
+    
+    public void JoinGame(Player player) {
+        // Validation logic
+        OnPlayerJoined?.Invoke(player);
+    }
+}
+                </code></pre>
+            </div>
+        </Section>
+
+        <!-- 4. Key Takeaways / Results -->
+        <Section id="results" title="KEY_TAKEAWAYS_&_RESULTS">
+            <ul class="results-list">
+                <li>The game was successfully published on the App Store and Google Play.</li>
+                <li>Spaghetti code was prevented, reducing the time to add new features to the project from weeks to days.</li>
+                <li>Server resources were utilized <strong>40%</strong> more efficiently thanks to the Traefik and Docker configuration.</li>
+            </ul>
+        </Section>
+        
+        <div style="text-align: center; margin: 60px 0;">
+            <a href="/#exp" class="back-btn">&lt;&lt; BACK TO QUEST LOG</a>
+        </div>
+    </div>
+</Layout>
+
+<style>
+    .case-study-hero {
+        padding: 80px 0 40px;
+        text-align: center;
+        border-bottom: 1px dashed rgba(0, 242, 255, 0.1);
+        margin-bottom: 40px;
+    }
+    
+    .case-study-hero h1 {
+        margin: 0 0 10px 0;
+        font-size: 3rem;
+        color: var(--secondary);
+    }
+    
+    .meta-info {
+        background: rgba(255, 255, 255, 0.02);
+        border-left: 3px solid var(--primary);
+        padding: 15px;
+        display: inline-block;
+        margin-top: 10px;
+    }
+    
+    .meta-info p {
+        margin: 0;
+    }
+    
+    .solution-block {
+        margin-bottom: 30px;
+        background: var(--card-bg);
+        padding: 20px;
+        border-left: 3px solid var(--accent);
+    }
+    
+    .solution-block h3 {
+        margin-top: 0;
+        font-size: 1.1rem;
+        font-family: 'Press Start 2P', cursive;
+        margin-bottom: 15px;
+    }
+    
+    .code-snippet {
+        background: rgba(0, 0, 0, 0.5);
+        padding: 20px;
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        border-left: 3px solid var(--primary);
+        border-radius: 4px;
+        overflow-x: auto;
+        font-family: monospace;
+        font-size: 1rem;
+        color: var(--text);
+    }
+    
+    .results-list {
+        list-style-type: square;
+        padding-left: 20px;
+        line-height: 1.8;
+    }
+    
+    .results-list li {
+        margin-bottom: 10px;
+    }
+    
+    .back-btn {
+        display: inline-block;
+        color: var(--primary);
+        text-decoration: none;
+        font-family: 'Press Start 2P', cursive;
+        font-size: 0.8rem;
+        padding: 15px 25px;
+        border: 2px dashed var(--primary);
+        transition: 0.3s;
+    }
+    
+    .back-btn:hover {
+        background: rgba(0, 242, 255, 0.1);
+        color: var(--secondary);
+        border-color: var(--secondary);
+        transform: translateY(-3px);
+    }
+</style>

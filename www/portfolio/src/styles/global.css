@@ -1,0 +1,238 @@
+:root {
+    --bg: #0a0a12;
+    --primary: #00f2ff;
+    /* Neon Blue */
+    --secondary: #ffe100;
+    /* Arcade Yellow */
+    --accent: #ff00ff;
+    /* Hot Pink */
+    --text: #e0e0e0;
+    --card-bg: rgba(255, 255, 255, 0.03);
+}
+
+* {
+    box-sizing: border-box;
+    scroll-behavior: smooth;
+}
+
+body {
+    background-color: var(--bg);
+    color: var(--text);
+    font-family: 'VT323', monospace;
+    font-size: 1.4rem;
+    line-height: 1.4;
+    margin: 0;
+    padding: 0;
+    /* Subtler scanline - less eye strain */
+    background: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.1) 50%), var(--bg);
+    background-size: 100% 4px;
+}
+
+/* --- LAYOUT UTILITIES --- */
+.container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+.spacer {
+    height: 100px;
+}
+
+/* --- TYPOGRAPHY --- */
+h2,
+h3,
+.pixel-font {
+    font-family: 'Press Start 2P', cursive;
+    text-transform: uppercase;
+}
+
+.highlight {
+    color: var(--primary);
+    font-weight: bold;
+}
+
+.dim {
+    color: #888;
+    font-size: 0.9rem;
+}
+
+h1 {
+    font-family: 'Press Start 2P', cursive;
+    text-transform: uppercase;
+    font-size: 2.2rem;
+    color: var(--secondary);
+    text-shadow: 2px 2px var(--accent);
+    text-align: center;
+    margin: 60px 0 30px;
+}
+
+
+.tag-row {
+    display: flex;
+    gap: 10px;
+    margin-top: 15px;
+    flex-wrap: wrap;
+}
+
+.tag {
+    font-size: 0.8rem;
+    background: rgba(255, 0, 255, 0.1);
+    color: var(--accent);
+    padding: 2px 8px;
+    border: 1px solid var(--accent);
+}
+
+header {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+footer {
+    text-align: center;
+    padding: 80px 0;
+}
+
+/* --- NAVIGATION --- */
+nav {
+    position: sticky;
+    top: 0;
+    background: rgba(10, 10, 18, 0.95);
+    padding: 20px 0;
+    z-index: 100;
+    border-bottom: 2px solid var(--primary);
+}
+
+.nav-content {
+    display: flex;
+    justify-content: center;
+}
+
+.nav-links {
+    display: flex;
+    gap: 30px;
+}
+
+nav a {
+    color: var(--text);
+    text-decoration: none;
+    font-family: 'Press Start 2P', cursive;
+    font-size: 0.7rem;
+    transition: 0.3s;
+}
+
+nav a:hover {
+    color: var(--accent);
+    transform: scale(1.1);
+}
+
+/* --- SECTIONS --- */
+section {
+    padding: 80px 0;
+    border-bottom: 1px solid rgba(0, 242, 255, 0.1);
+}
+
+h2 {
+    font-size: 1.2rem;
+    color: var(--primary);
+    margin-bottom: 40px;
+    display: flex;
+    align-items: center;
+}
+
+h2::before {
+    content: '>';
+    margin-right: 15px;
+}
+
+/* --- CARDS --- */
+.card {
+    background: var(--card-bg);
+    border-left: 4px solid var(--primary);
+    padding: 30px;
+    margin-bottom: 30px;
+    transition: 0.3s;
+}
+
+.card:hover {
+    background: rgba(255, 255, 255, 0.07);
+    transform: translateX(10px);
+}
+
+.card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 10px;
+}
+
+.card h3 {
+    margin: 0;
+    color: var(--secondary);
+    font-size: 1rem;
+}
+
+/* --- BLOG ITEMS --- */
+.blog-item {
+    display: block;
+    text-decoration: none;
+    color: inherit;
+    padding: 20px;
+    border: 1px dashed #444;
+    margin-bottom: 15px;
+    transition: 0.2s;
+    background: rgba(255, 255, 255, 0.02);
+}
+
+.blog-item:hover {
+    border-color: var(--secondary);
+    background: rgba(255, 225, 0, 0.05);
+}
+
+.blog-meta {
+    font-size: 0.9rem;
+    margin-bottom: 5px;
+}
+
+.blog-title {
+    font-size: 0.9rem;
+    margin: 10px 0;
+    color: var(--text);
+}
+
+.blog-item:hover .blog-title {
+    color: var(--secondary);
+}
+
+/* --- SKILLS / STATS --- */
+.skill-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+}
+
+.skill-label {
+    font-size: 0.8rem;
+    color: var(--accent);
+}
+
+.skill-list {
+    list-style: ">> ";
+    padding-left: 20px;
+}
+
+/* --- SCROLL BAR --- */
+::-webkit-scrollbar {
+    width: 8px;
+}
+
+::-webkit-scrollbar-track {
+    background: var(--bg);
+}
+
+::-webkit-scrollbar-thumb {
+    background: var(--primary);
+}

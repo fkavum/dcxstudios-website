@@ -1,0 +1,52 @@
+---
+import Layout from '../../layouts/examples/Layout.astro';
+import ProjectCard from '../../components/examples/ProjectCard.jsx';
+import VueCounter from '../../components/examples/VueCounter.vue';
+---
+<Layout title="Oyun Geliştirici Portfolyosu">
+    <header class="mb-12 text-center mt-10">
+        <h1 class="text-4xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-purple-600 mb-4">
+            Merhaba, Ben Bir Geliştiriciyim
+        </h1>
+        <p class="text-xl text-gray-400">Sistem mimarileri kuruyor ve oyun projeleri geliştiriyorum.</p>
+    </header>
+
+    <main>
+        <h2 class="text-2xl font-bold mb-6 border-b border-gray-700 pb-2">Öne Çıkan Projeler</h2>
+        
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <!-- ÖNEMLİ: client:load komutu Astro'ya bu bileşenin Javascript içerdiğini ve tarayıcıda çalışması gerektiğini söyler -->
+            <ProjectCard 
+                client:load 
+                title="Crossle" 
+                description="Multiplayer kelime bulmaca oyunu. Backend senkronizasyonu ve mobil entegrasyonları tamamlandı." 
+                techStack={['Unity', 'C#', 'Mobile']} 
+            />
+            
+            <ProjectCard 
+                client:load 
+                title="Quartermaster" 
+                description="Üs yönetimi ve lojistik mekaniklerine odaklanan yeni nesil bir simülasyon projesi." 
+                techStack={['Game Design', 'Logistics', 'System Arch']} 
+            />
+        </div>
+
+
+        <!-- REACT BİLEŞENİ -->
+        <div>
+            <h2 class="text-sm font-semibold uppercase text-blue-400 mb-2">React Alanı</h2>
+            <ProjectCard 
+                client:load 
+                title="React Projesi" 
+                description="Bu kart React ile render edildi." 
+                techStack={['React', 'Tailwind']} 
+            />
+        </div>
+
+        <!-- VUE BİLEŞENİ -->
+        <div>
+            <h2 class="text-sm font-semibold uppercase text-emerald-400 mb-2">Vue Alanı</h2>
+            <VueCounter client:load />
+        </div>
+    </main>
+</Layout>

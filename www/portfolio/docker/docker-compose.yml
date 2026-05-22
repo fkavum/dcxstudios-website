@@ -1,0 +1,23 @@
+version: '3.8'
+
+services:
+  portfolio:
+    build:
+      context: ..
+      dockerfile: docker/Dockerfile
+    container_name: astro_portfolio
+    # ports:
+      # - "5321:80" # Tarayıcıdan http://sunucu_ip:8080 şeklinde ulaşabilirsin
+    restart: always
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "10m" # Sunucu RAM'i gibi disk alanını da şişirmemek için log sınırı
+        max-file: "3"
+
+    # Eğer altyapında Traefik kullanıyorsan, ports kısmını silip 
+    # aşağıdaki labels alanını kendine göre aktifleştirebilirsin:
+    # labels:
+    #   - "traefik.enable=true"
+    #   - "traefik.http.routers.portfolio.rule=Host(`domainin.com`)"
+    #   - "traefik.http.services.portfolio.loadbalancer.server.port=80"

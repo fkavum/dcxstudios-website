@@ -1,0 +1,161 @@
+---
+import Layout from "../layouts/Layout.astro";
+import Navigation from "../components/Navigation.astro";
+import Section from "../components/Section.astro";
+import Card from "../components/Card.astro";
+import BlogCard from "../components/BlogCard.astro";
+import resumeData from "../data/resume.json";
+---
+
+<Layout title="Fatih Kavum | Portfolio">
+    <Navigation />
+
+    <div class="container">
+        <header id="top">
+            <h1>FATIH KAVUM</h1>
+            <p style="font-size: 1.8rem;">
+                Senior <span class="highlight">Game & Software</span> Engineer
+            </p>
+            <p class="dim">
+                Liège, Belgium | <span style="color:var(--secondary)"
+                    >50M+ Installs</span
+                >
+            </p>
+            <div class="tag-row header-tags">
+                <span class="tag">LVL 7+ YEARS EXP</span>
+                <span class="tag">UNITY EXPERT</span>
+                <span class="tag">BACKEND ARCHITECT</span>
+            </div>
+            <div class="social-links">
+                {
+                    resumeData.socials?.map((social) => (
+                        <a
+                            href={social.url}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            class="social-btn"
+                        >
+                            <img
+                                src={social.icon}
+                                alt={`${social.platform} icon`}
+                                class="social-icon"
+                            />
+                            {social.platform}
+                        </a>
+                    ))
+                }
+            </div>
+        </header>
+
+        <Section id="about" title="PLAYER_PROFILE">
+            <p style="font-size: 1.6rem; line-height: 1.6;">
+                I build <span class="highlight">scalable systems</span> for high-traffic
+                environments. Whether it's optimizing SQL queries from seconds to
+                milliseconds or architecting gameplay for <span
+                    class="highlight">500k Daily Active Users</span
+                >, I focus on performance and reliability.
+            </p>
+        </Section>
+
+        <Section id="exp" title="QUEST_LOG (EXPERIENCE)">
+            {
+                resumeData.experience.map((exp) => (
+                    <Card
+                        title={exp.company}
+                        subtitle={exp.role}
+                        date={exp.period}
+                        tags={exp.tags.length > 0 ? exp.tags : undefined}
+                        caseStudyLink={exp.caseStudySlug ? `/case-studies/${exp.caseStudySlug}` : undefined}
+                    >
+                        <p set:html={exp.description} />
+                    </Card>
+                ))
+            }
+        </Section>
+
+        <Section id="skills" title="ABILITY_TREE (STATS)">
+            <div class="skill-grid">
+                {
+                    resumeData.skills.map((skillGroup) => (
+                        <div>
+                            <p class="pixel-font skill-label">
+                                {skillGroup.category}
+                            </p>
+                            <ul class="skill-list">
+                                {skillGroup.items.map((item) => (
+                                    <li>{item}</li>
+                                ))}
+                            </ul>
+                        </div>
+                    ))
+                }
+            </div>
+        </Section>
+        <footer>
+            <p class="dim">
+                GAME OVER? NAH. <br /> CONTACT: fatihkavum@gmail.com
+            </p>
+        </footer>
+    </div>
+</Layout>
+
+<style>
+    header {
+        height: 100vh;
+    }
+
+    h1 {
+        font-size: 2.5rem;
+        margin-bottom: 10px;
+    }
+
+    .header-tags {
+        justify-content: center;
+        margin-top: 20px;
+    }
+
+    footer {
+        padding: 50px 0;
+        border: none;
+    }
+
+    .social-links {
+        display: flex;
+        gap: 15px;
+        margin-top: 30px;
+        justify-content: center;
+        flex-wrap: wrap;
+    }
+
+    .social-btn {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        text-decoration: none;
+        color: var(--text);
+        padding: 10px 20px;
+        border: 2px dashed #444;
+        font-family: "Press Start 2P", cursive;
+        font-size: 0.7rem;
+        line-height: 1;
+        transition: 0.2s;
+        background: rgba(255, 255, 255, 0.02);
+        text-transform: uppercase;
+        box-shadow: 4px 4px 0px rgba(0, 0, 0, 0.5);
+    }
+
+    .social-btn:hover {
+        border-color: var(--accent);
+        color: var(--secondary);
+        background: rgba(255, 0, 255, 0.1);
+        transform: translate(-2px, -2px);
+        box-shadow: 6px 6px 0px var(--accent);
+    }
+
+    .social-icon {
+        width: 24px;
+        height: 24px;
+        display: block;
+        margin-top: -2px;
+    }
+</style>

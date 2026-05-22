@@ -1,0 +1,33 @@
+---
+// Burası Javascript/Typescript alanı
+import Layout from '../../layouts/examples/Layout.astro';
+import Welcome from '../../components/examples/Welcome.astro';
+---
+<Layout>
+<div class="benim-ozel-kutum">
+  <h1>Standart HTML Başlığı</h1>
+  <p>Bu kutu klasik CSS ile şekillendi.</p>
+</div>
+
+<style>
+  /* Klasik CSS kodlarını buraya yapıştırabilirsin */
+  .benim-ozel-kutum {
+    background: linear-gradient(45deg, #1a1a1a, #333);
+    padding: 2rem;
+    border-radius: 15px;
+    border: 2px solid gold; /* Tailwind kullanmadan klasik CSS */
+  }
+  h1 {
+    color: #ffcc00;
+  }
+</style>
+
+<div class="m-10 p-6 max-w-sm mx-auto bg-gradient-to-r from-purple-500 to-pink-500 rounded-xl shadow-2xl text-center transform hover:scale-105 transition-transform duration-300">
+    <h2 class="text-2xl font-extrabold text-white mb-2">Tailwind Aktif!</h2>
+    <p class="text-purple-100 text-sm">Eğer bu kutu renkli, yuvarlak köşeli ve gölgeli duruyorsa sistem sorunsuz çalışıyor demektir.</p>
+</div>
+
+
+	<Welcome />
+
+</Layout>

@@ -1,0 +1,22 @@
+---
+interface Props {
+    title: string;
+    description: string;
+    date?: string;
+    category?: string;
+    slug: string;
+}
+
+const { title, description, date, category, slug } = Astro.props;
+---
+
+<a href={`/logs/${slug}`} class="blog-item">
+    <div class="blog-meta dim">
+        {date && <span>{date}</span>}
+        {date && category && <span> // </span>}
+        {category && <span>{category}</span>}
+    </div>
+    <div class="pixel-font blog-title">{title}</div>
+    <p>{description}</p>
+</a>
+
