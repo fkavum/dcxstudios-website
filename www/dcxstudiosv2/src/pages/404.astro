@@ -1,0 +1,24 @@
+---
+import Layout from '../layouts/Layout.astro';
+---
+
+<Layout title="404 — Page Not Found" description="The page you're looking for doesn't exist.">
+  <section class="bg-dark-surface text-white flex items-center justify-center" style="min-height: calc(100svh - var(--header-height))">
+    <div class="absolute -top-24 -right-24 w-96 h-96 bg-primary/10 rounded-full blur-[120px] pointer-events-none"></div>
+    <div class="absolute -bottom-24 -left-24 w-96 h-96 bg-purple-500/10 rounded-full blur-[100px] pointer-events-none"></div>
+
+    <div class="text-center px-6 relative z-10">
+      <div class="text-[120px] lg:text-[160px] font-black text-primary leading-none mb-4">404</div>
+      <h1 class="text-3xl lg:text-4xl font-black tracking-tight mb-4">Page Not Found</h1>
+      <p class="text-white/60 text-lg mb-10 max-w-md mx-auto leading-relaxed">
+        The page you're looking for doesn't exist or has been moved.
+      </p>
+      <a
+        href="/"
+        class="inline-block bg-primary text-dark-surface px-8 py-4 rounded-full font-bold text-base hover:opacity-90 transition-opacity"
+      >
+        Back to Home
+      </a>
+    </div>
+  </section>
+</Layout>

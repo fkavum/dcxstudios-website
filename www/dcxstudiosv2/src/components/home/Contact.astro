@@ -34,8 +34,25 @@ const methods = [
           </div>
           <h3 class="text-sm font-bold text-dark-surface mb-1">{method.label}</h3>
           <p class="text-dark-surface/60 text-sm">{method.value}</p>
+          {method.label === 'Discord' && (
+            <p id="discord-member-count" class="text-xs text-dark-surface/40 mt-1"></p>
+          )}
         </a>
       ))}
     </div>
   </div>
 </section>
+
+<script>
+  fetch('https://discord.com/api/invites/vsWZqhUHA8?with_counts=true')
+    .then(function (r) { return r.json(); })
+    .then(function (data) {
+      var el = document.getElementById('discord-member-count');
+      if (el && data.approximate_member_count) {
+        var online = data.approximate_presence_count;
+        var total = data.approximate_member_count;
+        el.textContent = total.toLocaleString() + ' members' + (online ? ' · ' + online + ' online' : '');
+      }
+    })
+    .catch(function () {});
+</script>

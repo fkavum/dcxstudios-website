@@ -1,12 +1,12 @@
 ---
 import Icon from './Icon.astro';
-import common from '../data/common.json';
+import { getStudioLogo } from '../data/common';
 
 const navLinks = [
-  { href: '/#gallery-app', label: 'Gallery' },
-  { href: '/#our-games', label: 'Games' },
-  { href: '/#about', label: 'About' },
-  { href: '/#contact', label: 'Contact' },
+  { href: '/#gallery-app', label: 'Gallery', section: 'gallery-app' },
+  { href: '/#our-games', label: 'Games', section: 'our-games' },
+  { href: '/#about', label: 'About', section: 'about' },
+  { href: '/#contact', label: 'Contact', section: 'contact' },
 ];
 ---
 
@@ -14,7 +14,7 @@ const navLinks = [
   <div class="container mx-auto px-4 lg:px-6 py-3 lg:py-4 flex items-center justify-between relative z-[80]">
     <!-- Logo -->
     <a href="/" class="flex gap-2 items-center">
-      <img src={common.studioLogo} alt="DCX Studios logo" class="size-11 rounded-xl object-cover" />
+      <img src={getStudioLogo()} alt="DCX Studios logo" class="size-11 rounded-xl object-cover" />
       <div class="font-bold text-xl">DCX Studios</div>
     </a>
 
@@ -25,7 +25,8 @@ const navLinks = [
           <li>
             <a
               href={link.href}
-              class="text-dark-surface hover:text-dark-surface/70 transition-colors duration-200 font-medium"
+              data-section={link.section}
+              class="nav-link text-dark-surface/60 hover:text-dark-surface transition-colors duration-200 font-medium"
             >
               {link.label}
             </a>
@@ -116,4 +117,43 @@ const navLinks = [
       document.body.style.overflow = '';
     });
   });
+
+  // Scroll-spy: highlight the nav link for the section currently in view
+  const navLinks = Array.from(document.querySelectorAll<HTMLAnchorElement>('a[data-section]'));
+  const sectionEntries = navLinks
+    .map(link => ({ link, el: document.getElementById(link.dataset.section!) }))
+    .filter((item): item is { link: HTMLAnchorElement; el: HTMLElement } => item.el !== null);
+
+  if (sectionEntries.length > 0) {
+    let ticking = false;
+
+    function updateActive() {
+      const triggerY = window.scrollY + window.innerHeight * 0.35;
+      let activeId = sectionEntries[0].el.id;
+
+      sectionEntries.forEach(({ el }) => {
+        if (el.offsetTop <= triggerY) activeId = el.id;
+      });
+
+      navLinks.forEach(link => {
+        const isActive = link.dataset.section === activeId;
+        link.classList.toggle('text-dark-surface', isActive);
+        link.classList.toggle('font-semibold', isActive);
+        link.classList.toggle('underline', isActive);
+        link.classList.toggle('underline-offset-4', isActive);
+        link.classList.toggle('decoration-2', isActive);
+        link.classList.toggle('text-dark-surface/60', !isActive);
+        link.classList.toggle('font-medium', !isActive);
+      });
+    }
+
+    window.addEventListener('scroll', () => {
+      if (!ticking) {
+        requestAnimationFrame(() => { updateActive(); ticking = false; });
+        ticking = true;
+      }
+    }, { passive: true });
+
+    updateActive();
+  }
 </script>

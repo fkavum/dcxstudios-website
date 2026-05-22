@@ -4,7 +4,7 @@ import Gallery from '../../components/Gallery.astro';
 import Icon from '../../components/Icon.astro';
 import { getCollection, render } from 'astro:content';
 import type { GalleryItem } from '../../components/Gallery.astro';
-import common from '../../data/common.json';
+import { getGameIcon } from '../../data/common';
 
 export async function getStaticPaths() {
   const games = await getCollection('games');
@@ -19,7 +19,7 @@ const { game } = Astro.props;
 const allGalleries = import.meta.glob<{ default: GalleryItem[] }>('../../data/galleries/*.json', { eager: true });
 const galleryItems: GalleryItem[] = allGalleries[`../../data/galleries/${game.id}.json`]?.default ?? [];
 const { title, subtitle, features, appStoreUrl, googlePlayUrl, hasGame } = game.data;
-const icon = (common.gameIcons as Record<string, string>)[game.id] ?? game.data.icon;
+const icon = getGameIcon(game.id);
 const { Content } = await render(game);
 ---
 

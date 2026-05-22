@@ -1,5 +1,6 @@
 {
   "studioLogo": "/logo.png",
+  "fallbackGameIcon": "/logo.png",
   "gameIcons": {
     "crossle": "/images/crossle-icon.png"
   }

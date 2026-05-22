@@ -1,5 +1,7 @@
 @import "tailwindcss";
 
+html { scroll-behavior: smooth; }
+
 /* Header height used by the hero section to fill the viewport */
 :root { --header-height: 73px; }
 @media (min-width: 1024px) { :root { --header-height: 81px; } }

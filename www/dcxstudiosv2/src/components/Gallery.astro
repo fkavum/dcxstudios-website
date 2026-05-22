@@ -7,6 +7,7 @@ export interface GalleryItem {
   description: string;
   alttext: string;
   thumbnailSeconds?: number;
+  poster?: string;
   tag?: string;
 }
 
@@ -121,7 +122,7 @@ const { items, sectionId = 'gallery-app', game } = Astro.props;
           class="relative bg-gradient-to-br from-accent-gray to-gray-100 flex items-center justify-center overflow-hidden"
           style="height: 600px;"
         >
-          <div id={`${sectionId}-main`} class="w-full h-full flex items-center justify-center"></div>
+          <div id={`${sectionId}-main`} class="relative w-full h-full flex items-center justify-center"></div>
 
           <button
             id={`${sectionId}-prev`}
@@ -201,11 +202,24 @@ const { items, sectionId = 'gallery-app', game } = Astro.props;
         var video = document.createElement('video');
         video.src = item.path;
         video.className = 'w-full h-full object-contain';
+        if (item.poster) video.poster = item.poster;
         video.autoplay = true;
         video.loop = true;
         video.muted = true;
         video.playsInline = true;
         mainEl.appendChild(video);
+        // iOS autoplay fallback
+        var p = video.play();
+        if (p !== undefined) {
+          p.catch(function () {
+            var btn = document.createElement('button');
+            btn.setAttribute('aria-label', 'Play video');
+            btn.style.cssText = 'position:absolute;inset:0;display:flex;align-items:center;justify-content:center;background:rgba(0,0,0,0.25);z-index:20;cursor:pointer;border:none;width:100%;';
+            btn.innerHTML = '<div style="width:64px;height:64px;border-radius:50%;background:rgba(255,255,255,0.92);display:flex;align-items:center;justify-content:center;box-shadow:0 4px 20px rgba(0,0,0,0.25)"><svg width="28" height="28" fill="#181811" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div>';
+            btn.addEventListener('click', function () { video.play(); btn.remove(); }, { once: true });
+            mainEl.appendChild(btn);
+          });
+        }
       } else {
         var img = document.createElement('img');
         img.src = item.path;
@@ -258,6 +272,7 @@ const { items, sectionId = 'gallery-app', game } = Astro.props;
           mediaEl.src = item.path;
           mediaEl.muted = true;
           mediaEl.preload = 'metadata';
+          if (item.poster) mediaEl.poster = item.poster;
           var seekTo = typeof item.thumbnailSeconds === 'number' ? item.thumbnailSeconds : 0;
           mediaEl.addEventListener('loadedmetadata', function () {
             mediaEl.currentTime = seekTo;

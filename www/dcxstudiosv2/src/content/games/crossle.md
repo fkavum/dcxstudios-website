@@ -1,7 +1,6 @@
 ---
 title: "Crossle"
 subtitle: "Daily Word Puzzle"
-icon: "/images/icon.webp"
 cardImage: "/images/hero-mockup.png"
 shortDescription: "A unique word puzzle game that challenges your mind every day. Connect letters, form words, and compete with players worldwide."
 features:

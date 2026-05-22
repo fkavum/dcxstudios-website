@@ -1,6 +1,6 @@
 ---
 import Icon from './Icon.astro';
-import common from '../data/common.json';
+import { getStudioLogo } from '../data/common';
 ---
 
 <footer class="bg-dark-surface border-t border-white/10 pt-16 pb-8 text-white relative overflow-hidden">
@@ -11,7 +11,7 @@ import common from '../data/common.json';
       <!-- Logo & Description -->
       <div class="lg:col-span-4 flex flex-col gap-6">
         <a href="/" class="flex gap-2 items-center">
-          <img src={common.studioLogo} alt="DCX Studios logo" class="size-10 rounded-xl object-cover" />
+          <img src={getStudioLogo()} alt="DCX Studios logo" class="size-10 rounded-xl object-cover" />
           <div class="font-bold text-xl tracking-tight">DCX Studios</div>
         </a>
         <p class="text-accent-gray/60 leading-relaxed max-w-sm">

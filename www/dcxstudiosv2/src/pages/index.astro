@@ -7,7 +7,7 @@ import About from '../components/home/About.astro';
 import Contact from '../components/home/Contact.astro';
 import type { GalleryItem, GameInfo } from '../components/Gallery.astro';
 import { getCollection } from 'astro:content';
-import common from '../data/common.json';
+import { getGameIcon } from '../data/common';
 
 const allGalleries = import.meta.glob<{ default: GalleryItem[] }>('../data/galleries/*.json', { eager: true });
 const galleryItems: GalleryItem[] = allGalleries['../data/galleries/crossle.json']?.default ?? [];
@@ -18,7 +18,7 @@ const crossle = games.find(g => g.id === 'crossle');
 const featuredGame: GameInfo | undefined = crossle ? {
   name: crossle.data.title,
   slug: crossle.id,
-  icon: (common.gameIcons as Record<string, string>)['crossle'] ?? crossle.data.icon,
+  icon: getGameIcon('crossle'),
   tagline: crossle.data.subtitle,
   description: crossle.data.shortDescription,
   appStoreUrl: crossle.data.appStoreUrl,
@@ -27,7 +27,7 @@ const featuredGame: GameInfo | undefined = crossle ? {
 } : undefined;
 ---
 
-<Layout title="DCX Studios — Independent Mobile Game Studio">
+<Layout title="DCX Studios — Independent Mobile Game Studio" preloadHero={true}>
   <Hero />
   <Gallery items={galleryItems} game={featuredGame} />
   <OurGames />

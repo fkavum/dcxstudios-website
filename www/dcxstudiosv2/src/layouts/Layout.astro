@@ -2,19 +2,23 @@
 import '../styles/global.css';
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
-import common from '../data/common.json';
+import { getStudioLogo } from '../data/common';
 
 interface Props {
   title: string;
   description?: string;
   ogImage?: string;
+  preloadHero?: boolean;
 }
 
 const {
   title,
   description = 'Independent mobile game studio creating immersive experiences. Play Crossle, our daily word puzzle game on iOS & Android.',
-  ogImage = '/images/icon.webp',
+  ogImage = getStudioLogo(),
+  preloadHero = false,
 } = Astro.props;
+
+const studioLogo = getStudioLogo();
 
 const canonicalURL = new URL(Astro.url.pathname, 'https://dcxstudios.org');
 ---
@@ -32,8 +36,9 @@ const canonicalURL = new URL(Astro.url.pathname, 'https://dcxstudios.org');
     <meta property="og:type" content="website" />
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:site" content="@dcxstudios" />
-    <link rel="icon" type="image/png" href={common.studioLogo} />
-    <link rel="apple-touch-icon" href={common.studioLogo} />
+    <link rel="icon" type="image/png" href={studioLogo} />
+    <link rel="apple-touch-icon" href={studioLogo} />
+    {preloadHero && <link rel="preload" as="image" href="/images/hero-mockup.png" fetchpriority="high" />}
     <link rel="canonical" href={canonicalURL} />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />

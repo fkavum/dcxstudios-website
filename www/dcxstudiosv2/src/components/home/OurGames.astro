@@ -18,6 +18,19 @@ games.sort((a, b) => (a.data.order ?? 0) - (b.data.order ?? 0));
 
     <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-5xl mx-auto">
       {games.map(game => <GameCard game={game} />)}
+
+      <!-- Coming soon placeholder -->
+      <div class="rounded-3xl border-2 border-dashed border-dark-surface/15 bg-dark-surface/3 flex flex-col items-center justify-center text-center p-8 gap-4 min-h-[220px]">
+        <div class="w-14 h-14 rounded-2xl bg-dark-surface/8 flex items-center justify-center">
+          <svg class="w-7 h-7 text-dark-surface/30" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M12 6v6h4.5m4.5 0a9 9 0 11-18 0 9 9 0 0118 0z"/>
+          </svg>
+        </div>
+        <div>
+          <p class="font-bold text-dark-surface/40 text-base">Coming Soon</p>
+          <p class="text-dark-surface/30 text-sm mt-1">New game in development</p>
+        </div>
+      </div>
     </div>
   </div>
 </section>

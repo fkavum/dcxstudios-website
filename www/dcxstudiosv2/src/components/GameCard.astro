@@ -1,7 +1,7 @@
 ---
 import type { CollectionEntry } from 'astro:content';
 import Icon from './Icon.astro';
-import common from '../data/common.json';
+import { getGameIcon } from '../data/common';
 
 interface Props {
   game: CollectionEntry<'games'>;
@@ -9,7 +9,7 @@ interface Props {
 
 const { game } = Astro.props;
 const { title, subtitle, cardImage, shortDescription } = game.data;
-const icon = (common.gameIcons as Record<string, string>)[game.id] ?? game.data.icon;
+const icon = getGameIcon(game.id);
 ---
 
 <a
