@@ -1,12 +1,13 @@
 ---
 export interface GalleryItem {
   id: string;
-  src: string;
-  alt: string;
-  title: string;
-  description: string;
-  tag: string;
+  path: string;
   type: 'image' | 'video';
+  header: string;
+  description: string;
+  alttext: string;
+  thumbnailSeconds?: number;
+  tag?: string;
 }
 
 interface Props {
@@ -73,10 +74,10 @@ const {
         <div id={`${sectionId}-info`} class="px-6 py-5 border-t border-gray-100 min-h-[88px]"></div>
       </div>
 
-      <!-- Thumbnails -->
+      <!-- Thumbnails (scrollable) -->
       <div
         id={`${sectionId}-thumbs`}
-        class="flex flex-row lg:flex-col gap-3 overflow-x-auto lg:overflow-x-visible overflow-y-visible lg:overflow-y-auto scrollbar-thin p-1 -m-1 pb-2 lg:pb-1"
+        class="flex flex-row lg:flex-col gap-3 overflow-x-auto lg:overflow-x-visible overflow-y-visible lg:overflow-y-auto lg:max-h-[600px] scrollbar-thin p-1 -m-1 pb-2 lg:pb-1"
       ></div>
     </div>
 
@@ -88,16 +89,16 @@ const {
 
 <script define:vars={{ galleryItems: items, galleryId: sectionId }}>
   (function () {
-    const mainEl = document.getElementById(galleryId + '-main');
-    const prevBtn = document.getElementById(galleryId + '-prev');
-    const nextBtn = document.getElementById(galleryId + '-next');
-    const counterEl = document.getElementById(galleryId + '-counter');
-    const infoEl = document.getElementById(galleryId + '-info');
-    const thumbsEl = document.getElementById(galleryId + '-thumbs');
+    var mainEl = document.getElementById(galleryId + '-main');
+    var prevBtn = document.getElementById(galleryId + '-prev');
+    var nextBtn = document.getElementById(galleryId + '-next');
+    var counterEl = document.getElementById(galleryId + '-counter');
+    var infoEl = document.getElementById(galleryId + '-info');
+    var thumbsEl = document.getElementById(galleryId + '-thumbs');
 
     if (!mainEl) return;
 
-    let selectedId = galleryItems[0].id;
+    var selectedId = galleryItems[0].id;
 
     function getItem() {
       return galleryItems.find(function (i) { return i.id === selectedId; }) || galleryItems[0];
@@ -115,7 +116,7 @@ const {
 
       if (item.type === 'video') {
         var video = document.createElement('video');
-        video.src = item.src;
+        video.src = item.path;
         video.className = 'w-full h-full object-contain';
         video.autoplay = true;
         video.loop = true;
@@ -124,8 +125,8 @@ const {
         mainEl.appendChild(video);
       } else {
         var img = document.createElement('img');
-        img.src = item.src;
-        img.alt = item.alt;
+        img.src = item.path;
+        img.alt = item.alttext;
         img.className = 'w-full h-full object-contain';
         mainEl.appendChild(img);
       }
@@ -139,6 +140,7 @@ const {
     }
 
     function renderInfo(item) {
+      var tag = item.tag || (item.type === 'video' ? 'Video' : 'Screenshot');
       var isVideo = item.type === 'video';
       var iconSvg = isVideo
         ? '<svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 text-dark-surface" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/><path stroke-linecap="round" stroke-linejoin="round" d="M15.91 11.672a.375.375 0 010 .656l-5.603 3.113a.375.375 0 01-.557-.328V8.887c0-.286.307-.466.557-.328l5.603 3.113z"/></svg>'
@@ -149,8 +151,8 @@ const {
           '<div class="w-10 h-10 rounded-xl bg-primary/10 flex items-center justify-center shrink-0 mt-0.5">' + iconSvg + '</div>' +
           '<div class="flex-1 min-w-0">' +
             '<div class="flex items-center gap-2 mb-1">' +
-              '<h3 class="font-bold text-dark-surface text-base">' + item.title + '</h3>' +
-              '<span class="text-xs font-medium px-2 py-0.5 rounded-full bg-accent-gray text-dark-surface/60 shrink-0">' + item.tag + '</span>' +
+              '<h3 class="font-bold text-dark-surface text-base">' + item.header + '</h3>' +
+              '<span class="text-xs font-medium px-2 py-0.5 rounded-full bg-accent-gray text-dark-surface/60 shrink-0">' + tag + '</span>' +
             '</div>' +
             '<p class="text-sm text-dark-surface/60 leading-relaxed">' + item.description + '</p>' +
           '</div>' +
@@ -170,13 +172,18 @@ const {
         var mediaEl;
         if (item.type === 'video') {
           mediaEl = document.createElement('video');
-          mediaEl.src = item.src;
+          mediaEl.src = item.path;
           mediaEl.muted = true;
           mediaEl.preload = 'metadata';
+          // Seek to thumbnailSeconds once metadata is loaded
+          var seekTo = typeof item.thumbnailSeconds === 'number' ? item.thumbnailSeconds : 0;
+          mediaEl.addEventListener('loadedmetadata', function () {
+            mediaEl.currentTime = seekTo;
+          });
         } else {
           mediaEl = document.createElement('img');
-          mediaEl.src = item.src;
-          mediaEl.alt = item.alt;
+          mediaEl.src = item.path;
+          mediaEl.alt = item.alttext;
         }
         mediaEl.className = 'w-full h-full object-contain transition-transform duration-500 group-hover:scale-105 brightness-90 group-hover:brightness-100';
         mediaWrap.appendChild(mediaEl);
@@ -186,7 +193,7 @@ const {
         titleWrap.className = 'px-3 py-2.5';
         var p = document.createElement('p');
         p.className = 'text-xs font-semibold transition-colors duration-200 line-clamp-2 text-dark-surface group-hover:text-primary';
-        p.textContent = item.title;
+        p.textContent = item.header;
         titleWrap.appendChild(p);
         btn.appendChild(titleWrap);
 

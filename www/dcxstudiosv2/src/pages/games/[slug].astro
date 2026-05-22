@@ -3,6 +3,7 @@ import Layout from '../../layouts/Layout.astro';
 import Gallery from '../../components/Gallery.astro';
 import Icon from '../../components/Icon.astro';
 import { getCollection, render } from 'astro:content';
+import type { GalleryItem } from '../../components/Gallery.astro';
 
 export async function getStaticPaths() {
   const games = await getCollection('games');
@@ -13,7 +14,10 @@ export async function getStaticPaths() {
 }
 
 const { game } = Astro.props;
-const { title, subtitle, icon, features, appStoreUrl, googlePlayUrl, gallery, hasGame } = game.data;
+
+const allGalleries = import.meta.glob<{ default: GalleryItem[] }>('../../data/galleries/*.json', { eager: true });
+const galleryItems: GalleryItem[] = allGalleries[`../../data/galleries/${game.id}.json`]?.default ?? [];
+const { title, subtitle, icon, features, appStoreUrl, googlePlayUrl, hasGame } = game.data;
 const { Content } = await render(game);
 ---
 
@@ -104,9 +108,9 @@ const { Content } = await render(game);
     )}
 
     <!-- Gallery -->
-    {gallery.length > 0 && (
+    {galleryItems.length > 0 && (
       <Gallery
-        items={gallery}
+        items={galleryItems}
         title="Media Gallery"
         subtitle={`A closer look at ${title}.`}
         sectionId="game-gallery"

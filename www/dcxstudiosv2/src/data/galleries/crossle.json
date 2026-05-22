@@ -1,0 +1,42 @@
+[
+  {
+    "id": "trailer",
+    "path": "/videos/tobegif.mp4",
+    "type": "video",
+    "header": "Official Gameplay Trailer",
+    "description": "Watch Crossle in action — spin the letter wheel and race to form words in this fast-paced daily puzzle game.",
+    "alttext": "Crossle gameplay trailer video",
+    "thumbnailSeconds": 2,
+    "tag": "Trailer"
+  },
+  {
+    "id": "shot-1",
+    "path": "/images/crossle-1.webp",
+    "type": "image",
+    "header": "Gameplay",
+    "description": "The letter wheel at the heart of Crossle — spin, connect, and solve puzzles before the timer runs out.",
+    "alttext": "Crossle letter wheel gameplay screenshot",
+    "thumbnailSeconds": 0,
+    "tag": "Screenshot"
+  },
+  {
+    "id": "shot-2",
+    "path": "/images/crossle-2.webp",
+    "type": "image",
+    "header": "Daily Challenge",
+    "description": "A clean daily dashboard showing your active streak, today's challenge, and quick access to every game mode.",
+    "alttext": "Crossle daily challenge screen",
+    "thumbnailSeconds": 0,
+    "tag": "Screenshot"
+  },
+  {
+    "id": "shot-3",
+    "path": "/images/crossle-3.webp",
+    "type": "image",
+    "header": "Global Leaderboard",
+    "description": "Compete with players worldwide. Your score, streak, and ranking are updated in real time so the race never stops.",
+    "alttext": "Crossle global leaderboard screen",
+    "thumbnailSeconds": 0,
+    "tag": "Screenshot"
+  }
+]

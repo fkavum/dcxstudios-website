@@ -6,11 +6,10 @@ import OurGames from '../components/home/OurGames.astro';
 import About from '../components/home/About.astro';
 import Contact from '../components/home/Contact.astro';
 import CommunityCta from '../components/home/CommunityCta.astro';
-import { getCollection } from 'astro:content';
+import type { GalleryItem } from '../components/Gallery.astro';
 
-const games = await getCollection('games');
-const crossle = games.find(g => g.id === 'crossle');
-const galleryItems = crossle?.data.gallery ?? [];
+const allGalleries = import.meta.glob<{ default: GalleryItem[] }>('../data/galleries/*.json', { eager: true });
+const galleryItems: GalleryItem[] = allGalleries['../data/galleries/crossle.json']?.default ?? [];
 ---
 
 <Layout title="DCX Studios — Independent Mobile Game Studio">

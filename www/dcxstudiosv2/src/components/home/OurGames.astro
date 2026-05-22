@@ -19,14 +19,5 @@ games.sort((a, b) => (a.data.order ?? 0) - (b.data.order ?? 0));
     <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-5xl mx-auto">
       {games.map(game => <GameCard game={game} />)}
     </div>
-
-    <div class="text-center mt-12">
-      <a
-        href="/games"
-        class="inline-flex items-center gap-2 px-8 py-4 rounded-full bg-dark-surface text-white font-bold text-base hover:opacity-90 transition-opacity duration-200"
-      >
-        View All Games
-      </a>
-    </div>
   </div>
 </section>

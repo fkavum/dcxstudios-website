@@ -29,48 +29,6 @@
     "googlePlayUrl": {
       "type": "string"
     },
-    "gallery": {
-      "type": "array",
-      "items": {
-        "type": "object",
-        "properties": {
-          "id": {
-            "type": "string"
-          },
-          "src": {
-            "type": "string"
-          },
-          "alt": {
-            "type": "string"
-          },
-          "title": {
-            "type": "string"
-          },
-          "description": {
-            "type": "string"
-          },
-          "tag": {
-            "type": "string"
-          },
-          "type": {
-            "type": "string",
-            "enum": [
-              "image",
-              "video"
-            ]
-          }
-        },
-        "required": [
-          "id",
-          "src",
-          "alt",
-          "title",
-          "description",
-          "tag",
-          "type"
-        ]
-      }
-    },
     "hasGame": {
       "default": false,
       "type": "boolean"
@@ -88,7 +46,6 @@
     "subtitle",
     "icon",
     "shortDescription",
-    "features",
-    "gallery"
+    "features"
   ]
 }
