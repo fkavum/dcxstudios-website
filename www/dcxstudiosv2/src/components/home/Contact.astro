@@ -1,0 +1,41 @@
+---
+import Icon from '../Icon.astro';
+
+const methods = [
+  { icon: 'envelope', label: 'Email', value: 'dcxstudios@gmail.com', href: 'mailto:dcxstudios@gmail.com' },
+  { icon: 'discord', label: 'Discord', value: 'discord.gg/vsWZqhUHA8', href: 'https://discord.gg/vsWZqhUHA8' },
+  { icon: 'linkedin', label: 'LinkedIn', value: 'dcx-studios', href: 'https://www.linkedin.com/company/dcx-studios/' },
+] as const;
+---
+
+<section id="contact" class="py-20 lg:py-32 bg-background-light">
+  <div class="container mx-auto px-6">
+    <div class="text-center max-w-2xl mx-auto mb-16">
+      <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-dark-surface/5 border border-dark-surface/10 mb-6">
+        <Icon name="chat-bubble-left-right" class="w-4 h-4 text-dark-surface/60" />
+        <span class="text-sm font-medium text-dark-surface/60">Get In Touch</span>
+      </div>
+      <h2 class="text-4xl lg:text-5xl font-black tracking-tight text-dark-surface mb-4">Let's Talk</h2>
+      <p class="text-lg text-dark-surface/60">
+        Have a question, feedback, or just want to say hi? We'd love to hear from you.
+      </p>
+    </div>
+
+    <div class="grid md:grid-cols-3 gap-6 max-w-4xl mx-auto">
+      {methods.map(method => (
+        <a
+          href={method.href}
+          target="_blank"
+          rel="noopener noreferrer"
+          class="group p-6 rounded-2xl bg-white border border-gray-200 hover:border-primary transition-all duration-300 hover:shadow-lg hover:-translate-y-1 text-center"
+        >
+          <div class="w-12 h-12 rounded-xl bg-primary/10 flex items-center justify-center mb-4 mx-auto group-hover:scale-110 transition-transform duration-300">
+            <Icon name={method.icon} class="w-6 h-6 text-primary" />
+          </div>
+          <h3 class="text-sm font-bold text-dark-surface mb-1">{method.label}</h3>
+          <p class="text-dark-surface/60 text-sm">{method.value}</p>
+        </a>
+      ))}
+    </div>
+  </div>
+</section>

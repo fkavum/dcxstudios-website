@@ -1,0 +1,116 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Icon from '../components/Icon.astro';
+
+const values = [
+  { icon: 'light-bulb', title: 'Innovation', description: 'We constantly push the boundaries of game design, exploring new mechanics and creative solutions.' },
+  { icon: 'heart', title: 'Passion', description: 'Every game we create is a labor of love, built by people who genuinely care about the craft.' },
+  { icon: 'users', title: 'Community', description: 'Our players are at the heart of everything we do. We listen, learn, and grow together.' },
+  { icon: 'sparkles', title: 'Quality', description: 'We never compromise on quality. Every detail matters, from gameplay to visuals to sound.' },
+] as const;
+---
+
+<Layout
+  title="About Us — DCX Studios"
+  description="Learn about DCX Studios — A passionate indie game development studio creating memorable gaming experiences."
+>
+  <div class="min-h-screen">
+    <!-- Hero -->
+    <section class="relative bg-dark-surface text-white py-20 lg:py-32 overflow-hidden">
+      <div class="absolute -bottom-24 -left-24 w-96 h-96 bg-primary/20 rounded-full blur-[120px]"></div>
+      <div class="absolute -top-24 -right-24 w-96 h-96 bg-primary/20 rounded-full blur-[120px]"></div>
+
+      <div class="container mx-auto px-6 relative z-10">
+        <div class="max-w-4xl mx-auto text-center">
+          <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/10 border border-white/10 backdrop-blur-sm mb-6">
+            <Icon name="information-circle" class="w-4 h-4" />
+            <span class="text-sm font-medium">About Us</span>
+          </div>
+          <h1 class="text-5xl lg:text-7xl font-black leading-tight tracking-tight mb-6">Crafting Games That Matter</h1>
+          <p class="text-xl text-white/80 leading-relaxed max-w-2xl mx-auto">
+            We're a passionate indie game studio dedicated to creating unique, engaging experiences that bring joy to players worldwide.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Stats -->
+    <section class="bg-white border-b border-gray-200 py-12">
+      <div class="container mx-auto px-6">
+        <div class="grid grid-cols-2 lg:grid-cols-4 gap-8">
+          {[
+            { value: '2024', label: 'Founded' },
+            { value: '1+', label: 'Games' },
+            { value: '100+', label: 'Players' },
+            { value: '4.8', label: 'Avg Rating' },
+          ].map(stat => (
+            <div class="text-center">
+              <div class="text-4xl lg:text-5xl font-black text-dark-surface mb-2">{stat.value}</div>
+              <p class="text-sm text-dark-surface/60 uppercase tracking-wider">{stat.label}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <!-- Story -->
+    <section class="py-20 lg:py-32 bg-background-light">
+      <div class="container mx-auto px-6">
+        <div class="max-w-4xl mx-auto">
+          <h2 class="text-4xl lg:text-5xl font-black text-dark-surface mb-8 text-center">Our Story</h2>
+          <div class="space-y-6">
+            <p class="text-lg text-dark-surface/80 leading-relaxed">
+              DCX Studios was born from a simple idea: games should be more than just entertainment—they should be experiences that stay with you. Founded in 2024, we started with a small team of passionate developers who believed in the power of creative gameplay.
+            </p>
+            <p class="text-lg text-dark-surface/80 leading-relaxed">
+              Our first game, Crossle, represents everything we stand for: innovative mechanics, beautiful design, and a focus on player engagement. It's a daily brain workout disguised as a puzzle game, and it's just the beginning.
+            </p>
+            <p class="text-lg text-dark-surface/80 leading-relaxed">
+              Today, we continue to push boundaries, experiment with new ideas, and most importantly, listen to our community. Every game we create is a labor of love, crafted with attention to detail and a commitment to quality.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Values -->
+    <section class="py-20 lg:py-32 bg-white">
+      <div class="container mx-auto px-6">
+        <div class="text-center mb-16">
+          <h2 class="text-4xl lg:text-5xl font-black text-dark-surface mb-4">Our Values</h2>
+          <p class="text-lg text-dark-surface/60 max-w-2xl mx-auto">The principles that guide everything we do</p>
+        </div>
+
+        <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+          {values.map(value => (
+            <div class="group p-8 rounded-3xl bg-background-light border border-gray-200 hover:border-primary transition-all duration-300 hover:shadow-xl hover:-translate-y-1">
+              <div class="w-16 h-16 rounded-2xl bg-primary/10 flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300">
+                <Icon name={value.icon} class="w-8 h-8 text-primary" />
+              </div>
+              <h3 class="text-xl font-bold text-dark-surface mb-3">{value.title}</h3>
+              <p class="text-dark-surface/70 leading-relaxed">{value.description}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="py-20 bg-dark-surface text-white">
+      <div class="container mx-auto px-6 text-center">
+        <h2 class="text-4xl lg:text-5xl font-black mb-6">Join Our Journey</h2>
+        <p class="text-xl text-white/80 mb-8 max-w-2xl mx-auto">
+          Be part of our story. Play our games, share your feedback, and help us shape the future of gaming.
+        </p>
+        <div class="flex flex-wrap gap-4 justify-center">
+          <a href="/games" class="bg-primary text-dark-surface px-8 py-4 rounded-full font-bold text-base hover:opacity-90 transition-opacity">
+            Explore Our Games
+          </a>
+          <a href="/contact" class="border border-white text-white px-8 py-4 rounded-full font-bold text-base hover:bg-white/10 transition-all">
+            Get In Touch
+          </a>
+        </div>
+      </div>
+    </section>
+  </div>
+</Layout>

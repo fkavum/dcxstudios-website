@@ -1,0 +1,350 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import Gallery from '../../components/Gallery.astro';
+import Icon from '../../components/Icon.astro';
+import { getCollection, render } from 'astro:content';
+
+export async function getStaticPaths() {
+  const games = await getCollection('games');
+  return games.map(game => ({
+    params: { slug: game.id },
+    props: { game },
+  }));
+}
+
+const { game } = Astro.props;
+const { title, subtitle, icon, features, appStoreUrl, googlePlayUrl, gallery, hasGame } = game.data;
+const { Content } = await render(game);
+---
+
+<Layout
+  title={`${title} — DCX Studios`}
+  description={game.data.shortDescription}
+  ogImage={icon}
+>
+  <div class="min-h-screen">
+    <!-- Game Header -->
+    <section class="relative bg-dark-surface text-white py-16 lg:py-24 overflow-hidden">
+      <div class="absolute -bottom-24 -left-24 w-96 h-96 bg-primary/20 rounded-full blur-[120px]"></div>
+      <div class="absolute -top-24 -right-24 w-96 h-96 bg-primary/20 rounded-full blur-[120px]"></div>
+
+      <div class="container mx-auto px-6 relative z-10">
+        <a href="/games" class="inline-flex items-center gap-2 text-white/60 hover:text-white text-sm mb-8 transition-colors">
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/>
+          </svg>
+          Back to Games
+        </a>
+
+        <div class="flex flex-col sm:flex-row items-start sm:items-center gap-6 mb-8">
+          <img src={icon} alt={title + ' icon'} class="w-20 h-20 rounded-2xl shadow-xl shrink-0" />
+          <div>
+            <h1 class="text-4xl lg:text-6xl font-black tracking-tight">{title}</h1>
+            <p class="text-primary text-xl font-semibold mt-1">{subtitle}</p>
+          </div>
+        </div>
+
+        <div class="flex flex-wrap gap-4">
+          {appStoreUrl && (
+            <a
+              href={appStoreUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              class="bg-primary text-dark-surface px-6 py-3 rounded-full font-bold text-sm hover:opacity-90 transition-opacity"
+            >
+              App Store
+            </a>
+          )}
+          {googlePlayUrl && (
+            <a
+              href={googlePlayUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              class="bg-primary text-dark-surface px-6 py-3 rounded-full font-bold text-sm hover:opacity-90 transition-opacity"
+            >
+              Google Play
+            </a>
+          )}
+        </div>
+      </div>
+    </section>
+
+    <!-- Interactive Game Section -->
+    {hasGame && (
+      <section class="py-20 lg:py-24 bg-white">
+        <div class="container mx-auto px-6">
+          <div class="text-center mb-12">
+            <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-dark-surface/5 border border-dark-surface/10 mb-4">
+              <span class="w-2 h-2 rounded-full bg-primary animate-pulse"></span>
+              <span class="text-sm font-medium text-dark-surface/60">Try It Now</span>
+            </div>
+            <h2 class="text-3xl lg:text-4xl font-black text-dark-surface mb-3">Play Crossle</h2>
+            <p class="text-dark-surface/60">Drag the letters to spell out <strong class="text-dark-surface">DCX</strong></p>
+          </div>
+
+          <div class="game-container" id="game-container">
+            <div class="wheel-container" id="wheel-container">
+              <svg class="connection-layer" viewBox="0 0 320 320">
+                <path id="connection-path" d="" stroke="#6366f1" stroke-width="3" fill="none" stroke-linecap="round" stroke-linejoin="round"></path>
+              </svg>
+              <button class="center-icon" id="shuffle-btn" title="Shuffle Letters" aria-label="Shuffle letters">
+                <svg width="28" height="28" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M16.023 9.348h4.992v-.001M2.985 19.644v-4.992m0 0h4.992m-4.993 0l3.181 3.183a8.25 8.25 0 0013.803-3.7M4.031 9.865a8.25 8.25 0 0113.803-3.7l3.181 3.182m0-4.991v4.99"/>
+                </svg>
+              </button>
+              <div class="letter-circle" id="letter-circle"></div>
+            </div>
+
+            <div class="selected-word">
+              <div class="word-display" id="word-display"></div>
+            </div>
+          </div>
+        </div>
+      </section>
+    )}
+
+    <!-- Gallery -->
+    {gallery.length > 0 && (
+      <Gallery
+        items={gallery}
+        title="Media Gallery"
+        subtitle={`A closer look at ${title}.`}
+        sectionId="game-gallery"
+      />
+    )}
+
+    <!-- About & Features -->
+    <section class="py-20 lg:py-32 bg-white">
+      <div class="container mx-auto px-6">
+        <div class="grid lg:grid-cols-2 gap-16 items-start max-w-6xl mx-auto">
+          <!-- Description -->
+          <div>
+            <h2 class="text-3xl lg:text-4xl font-black text-dark-surface mb-8">About This Game</h2>
+            <div class="prose prose-lg max-w-none text-dark-surface/80 leading-relaxed">
+              <Content />
+            </div>
+          </div>
+
+          <!-- Features -->
+          <div>
+            <h2 class="text-3xl lg:text-4xl font-black text-dark-surface mb-8">Features</h2>
+            <ul class="space-y-4">
+              {features.map(feature => (
+                <li class="flex items-start gap-3">
+                  <Icon name="check-circle" class="w-6 h-6 text-primary shrink-0 mt-0.5" />
+                  <span class="text-dark-surface/80 leading-relaxed">{feature}</span>
+                </li>
+              ))}
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Download CTA -->
+    {(appStoreUrl || googlePlayUrl) && (
+      <section class="py-20 bg-dark-surface text-white">
+        <div class="container mx-auto px-6 text-center">
+          <h2 class="text-4xl font-black mb-4">Download {title}</h2>
+          <p class="text-white/70 mb-8 text-lg">Available now on iOS and Android — it's free!</p>
+          <div class="flex flex-wrap gap-4 justify-center">
+            {appStoreUrl && (
+              <a href={appStoreUrl} target="_blank" rel="noopener noreferrer" class="bg-primary text-dark-surface px-8 py-4 rounded-full font-bold text-base hover:opacity-90 transition-opacity">
+                Download on App Store
+              </a>
+            )}
+            {googlePlayUrl && (
+              <a href={googlePlayUrl} target="_blank" rel="noopener noreferrer" class="bg-primary text-dark-surface px-8 py-4 rounded-full font-bold text-base hover:opacity-90 transition-opacity">
+                Download on Google Play
+              </a>
+            )}
+          </div>
+        </div>
+      </section>
+    )}
+  </div>
+</Layout>
+
+{hasGame && (
+  <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.9.3/dist/confetti.browser.min.js"></script>
+)}
+
+{hasGame && (
+  <script>
+    (function () {
+      var letters = [
+        { id: 'c', char: 'C' },
+        { id: 'x', char: 'X' },
+        { id: 'd', char: 'D' },
+        { id: 'e', char: 'E' },
+        { id: 'r', char: 'R' },
+        { id: 'a', char: 'A' }
+      ];
+      var selectedIndices = [];
+      var targetWord = 'DCX';
+      var isDragging = false;
+      var isShuffling = false;
+
+      var letterCircle = document.getElementById('letter-circle');
+      var pathEl = document.getElementById('connection-path');
+      var wordDisplay = document.getElementById('word-display');
+      var shuffleBtn = document.getElementById('shuffle-btn');
+      var container = document.getElementById('wheel-container');
+
+      if (!letterCircle || !pathEl || !wordDisplay || !shuffleBtn || !container) return;
+
+      renderLetters(letters);
+
+      shuffleBtn.addEventListener('click', function () {
+        if (isShuffling) return;
+        isShuffling = true;
+        shuffleBtn.classList.add('shuffling');
+        clearSelection();
+        setTimeout(function () {
+          for (var i = letters.length - 1; i > 0; i--) {
+            var j = Math.floor(Math.random() * (i + 1));
+            var tmp = letters[i]; letters[i] = letters[j]; letters[j] = tmp;
+          }
+          renderLetters(letters);
+          setTimeout(function () {
+            isShuffling = false;
+            shuffleBtn.classList.remove('shuffling');
+          }, 600);
+        }, 100);
+      });
+
+      function renderLetters(currentLetters) {
+        letterCircle.innerHTML = '';
+        currentLetters.forEach(function (letter, index) {
+          var el = document.createElement('div');
+          el.className = 'letter-button';
+          el.textContent = letter.char;
+          el.dataset.index = String(index);
+
+          var angle = (index * 60 - 90) * (Math.PI / 180);
+          var radius = 120;
+          var x = Math.cos(angle) * radius;
+          var y = Math.sin(angle) * radius;
+
+          el.style.setProperty('--x', x + 'px');
+          el.style.setProperty('--y', y + 'px');
+          el.style.transform = 'translate(' + x + 'px, ' + y + 'px)';
+
+          el.addEventListener('mousedown', function (e) { e.stopPropagation(); startDrag(index); });
+          el.addEventListener('mouseenter', function () { onHover(index); });
+          el.addEventListener('touchstart', function (e) { e.preventDefault(); e.stopPropagation(); startDrag(index); }, { passive: false });
+
+          letterCircle.appendChild(el);
+        });
+      }
+
+      container.addEventListener('mouseup', endDrag);
+      container.addEventListener('mouseleave', endDrag);
+      container.addEventListener('touchend', endDrag);
+      container.addEventListener('touchcancel', endDrag);
+      container.addEventListener('touchmove', onTouchMove, { passive: false });
+
+      function startDrag(index) {
+        isDragging = true;
+        selectedIndices = [index];
+        updateSelectionUI();
+      }
+
+      function onHover(index) {
+        if (!isDragging) return;
+        if (selectedIndices.indexOf(index) !== -1) return;
+        selectedIndices.push(index);
+        updateSelectionUI();
+        checkWord();
+      }
+
+      function onTouchMove(e) {
+        if (!isDragging) return;
+        e.preventDefault();
+        var touch = e.touches[0];
+        var el = document.elementFromPoint(touch.clientX, touch.clientY);
+        if (!el) return;
+        var letterEl = el.closest ? el.closest('.letter-button') : null;
+        if (letterEl) {
+          var index = parseInt(letterEl.dataset.index, 10);
+          if (!isNaN(index) && selectedIndices.indexOf(index) === -1) {
+            onHover(index);
+          }
+        }
+      }
+
+      function endDrag() {
+        if (!isDragging) return;
+        isDragging = false;
+        var currentWord = selectedIndices.map(function (i) { return letters[i].char; }).join('');
+        if (currentWord !== targetWord) {
+          setTimeout(clearSelection, 500);
+        } else {
+          checkWord();
+        }
+      }
+
+      function clearSelection() {
+        selectedIndices = [];
+        updateSelectionUI();
+      }
+
+      function updateSelectionUI() {
+        var buttons = letterCircle.querySelectorAll('.letter-button');
+        buttons.forEach(function (btn) {
+          var idx = parseInt(btn.dataset.index, 10);
+          if (selectedIndices.indexOf(idx) !== -1) {
+            btn.classList.add('selected');
+          } else {
+            btn.classList.remove('selected');
+          }
+        });
+
+        if (selectedIndices.length === 0) {
+          pathEl.setAttribute('d', '');
+        } else {
+          var points = selectedIndices.map(function (idx) {
+            var angle = (idx * 60 - 90) * (Math.PI / 180);
+            var radius = 120;
+            return { x: 160 + Math.cos(angle) * radius, y: 160 + Math.sin(angle) * radius };
+          });
+          var d = 'M ' + points[0].x + ' ' + points[0].y;
+          for (var i = 1; i < points.length; i++) {
+            d += ' L ' + points[i].x + ' ' + points[i].y;
+          }
+          pathEl.setAttribute('d', d);
+        }
+
+        wordDisplay.innerHTML = '';
+        selectedIndices.forEach(function (idx) {
+          var span = document.createElement('span');
+          span.className = 'letter-chip';
+          span.textContent = letters[idx].char;
+          wordDisplay.appendChild(span);
+        });
+      }
+
+      function checkWord() {
+        var currentWord = selectedIndices.map(function (i) { return letters[i].char; }).join('');
+        if (currentWord === targetWord) {
+          triggerConfetti();
+        }
+      }
+
+      function triggerConfetti() {
+        if (typeof confetti === 'undefined') return;
+        var duration = 3000;
+        var end = Date.now() + duration;
+        (function frame() {
+          confetti({ particleCount: 7, angle: 60, spread: 55, origin: { x: 0 }, colors: ['#6366f1', '#8b5cf6', '#d946ef'] });
+          confetti({ particleCount: 7, angle: 120, spread: 55, origin: { x: 1 }, colors: ['#6366f1', '#8b5cf6', '#d946ef'] });
+          if (Date.now() < end) requestAnimationFrame(frame);
+        }());
+        confetti({ particleCount: 200, spread: 180, origin: { y: 0.5 }, startVelocity: 60, colors: ['#6366f1', '#8b5cf6', '#d946ef', '#ec4899', '#f43f5e'] });
+        setTimeout(function () {
+          confetti({ particleCount: 150, spread: 360, origin: { y: 0.5 }, shapes: ['circle'], colors: ['#6366f1', '#8b5cf6', '#d946ef'] });
+        }, 400);
+      }
+    })();
+  </script>
+)}

@@ -1,7 +1,24 @@
 {
   "permissions": {
     "allow": [
-      "Bash(xargs ls -la)"
+      "Bash(xargs ls -la)",
+      "Bash(cp /Users/fkavum/Documents/project/dcxstudios-website/www/dcxstudios-renewed-static/public/images/crossle-1.webp /Users/fkavum/Documents/project/dcxstudios-website/www/dcxstudiosv2/public/images/)",
+      "Bash(cp /Users/fkavum/Documents/project/dcxstudios-website/www/dcxstudios-renewed-static/public/images/crossle-2.webp /Users/fkavum/Documents/project/dcxstudios-website/www/dcxstudiosv2/public/images/)",
+      "Bash(cp /Users/fkavum/Documents/project/dcxstudios-website/www/dcxstudios-renewed-static/public/images/crossle-3.webp /Users/fkavum/Documents/project/dcxstudios-website/www/dcxstudiosv2/public/images/)",
+      "Bash(cp /Users/fkavum/Documents/project/dcxstudios-website/www/dcxstudios-renewed-static/public/images/hero-mockup.png /Users/fkavum/Documents/project/dcxstudios-website/www/dcxstudiosv2/public/images/)",
+      "Bash(cp /Users/fkavum/Documents/project/dcxstudios-website/www/dcxstudios-renewed-static/videos/tobegif.mp4 /Users/fkavum/Documents/project/dcxstudios-website/www/dcxstudiosv2/public/videos/)",
+      "Bash(cp /Users/fkavum/Documents/project/dcxstudios-website/www/dcxstudios-renewed-static/images/crossle-1.webp /Users/fkavum/Documents/project/dcxstudios-website/www/dcxstudiosv2/public/images/)",
+      "Bash(cp /Users/fkavum/Documents/project/dcxstudios-website/www/dcxstudios-renewed-static/images/crossle-2.webp /Users/fkavum/Documents/project/dcxstudios-website/www/dcxstudiosv2/public/images/)",
+      "Bash(cp /Users/fkavum/Documents/project/dcxstudios-website/www/dcxstudios-renewed-static/images/crossle-3.webp /Users/fkavum/Documents/project/dcxstudios-website/www/dcxstudiosv2/public/images/)",
+      "Bash(cp /Users/fkavum/Documents/project/dcxstudios-website/www/dcxstudios-renewed-static/images/hero-mockup.png /Users/fkavum/Documents/project/dcxstudios-website/www/dcxstudiosv2/public/images/)",
+      "Bash(cp /Users/fkavum/Documents/project/dcxstudios-website/www/dcxstudios/assets/images/icon.webp /Users/fkavum/Documents/project/dcxstudios-website/www/dcxstudiosv2/public/images/)",
+      "Bash(npm install *)",
+      "Bash(npm run *)",
+      "Bash(npm show *)",
+      "Bash(npm ls *)",
+      "Bash(curl -s http://localhost:4322/)",
+      "Bash(curl -s http://localhost:4322/games/crossle/)",
+      "Bash(curl -s http://localhost:4322/games/)"
     ]
   }
 }

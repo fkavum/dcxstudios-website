@@ -1,0 +1,88 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import { getCollection } from 'astro:content';
+import GameCard from '../../components/GameCard.astro';
+import Icon from '../../components/Icon.astro';
+
+const games = await getCollection('games');
+games.sort((a, b) => (a.data.order ?? 0) - (b.data.order ?? 0));
+const liveGames = games;
+---
+
+<Layout
+  title="Our Games — DCX Studios"
+  description="Explore the games created by DCX Studios. Play Crossle, an innovative word puzzle game available on iOS and Android."
+>
+  <div class="min-h-screen">
+    <!-- Hero -->
+    <section class="relative bg-dark-surface text-white py-20 lg:py-32 overflow-hidden">
+      <div class="absolute -bottom-24 -left-24 w-96 h-96 bg-primary/20 rounded-full blur-[120px]"></div>
+      <div class="absolute -top-24 -right-24 w-96 h-96 bg-primary/20 rounded-full blur-[120px]"></div>
+
+      <div class="container mx-auto px-6 relative z-10">
+        <div class="max-w-4xl mx-auto text-center">
+          <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/10 border border-white/10 backdrop-blur-sm mb-6">
+            <Icon name="puzzle-piece" class="w-4 h-4" />
+            <span class="text-sm font-medium">Our Games</span>
+          </div>
+          <h1 class="text-5xl lg:text-7xl font-black leading-tight tracking-tight mb-6">Games We've Created</h1>
+          <p class="text-xl text-white/80 leading-relaxed max-w-2xl mx-auto">
+            Each game is crafted with passion, innovation, and a commitment to delivering unforgettable experiences.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Live Games -->
+    <section class="py-20 lg:py-32 bg-background-light">
+      <div class="container mx-auto px-6">
+        <div class="text-center mb-16">
+          <h2 class="text-4xl lg:text-5xl font-black text-dark-surface mb-4">Live Games</h2>
+          <p class="text-lg text-dark-surface/60">Available now on your favorite platforms</p>
+        </div>
+
+        <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-5xl mx-auto">
+          {liveGames.map(game => <GameCard game={game} />)}
+        </div>
+      </div>
+    </section>
+
+    <!-- Upcoming / Coming Soon -->
+    <section class="py-20 lg:py-32 bg-white">
+      <div class="container mx-auto px-6">
+        <div class="text-center mb-16">
+          <h2 class="text-4xl lg:text-5xl font-black text-dark-surface mb-4">What's Next</h2>
+          <p class="text-lg text-dark-surface/60">Exciting projects in development</p>
+        </div>
+
+        <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-5xl mx-auto">
+          <div class="group relative rounded-3xl overflow-hidden bg-gradient-to-br from-dark-surface to-dark-surface/80 p-8 text-white hover:scale-[1.02] transition-transform duration-300">
+            <div class="absolute inset-0 bg-gradient-to-br from-primary/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+            <div class="relative z-10">
+              <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/10 text-white text-sm font-bold mb-4">
+                <span class="w-2 h-2 rounded-full bg-primary animate-pulse"></span>
+                In Development
+              </div>
+              <h3 class="text-2xl font-black mb-2">Coming Soon</h3>
+              <p class="text-primary font-semibold mb-4">Stay Tuned</p>
+              <p class="text-white/80">Our next project is in the works. Follow us on social media for updates.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="py-20 bg-dark-surface text-white">
+      <div class="container mx-auto px-6 text-center">
+        <h2 class="text-4xl lg:text-5xl font-black mb-6">Stay Updated</h2>
+        <p class="text-xl text-white/80 mb-8 max-w-2xl mx-auto">
+          Want to be the first to know about new releases? Get in touch with us.
+        </p>
+        <a href="/contact" class="bg-primary text-dark-surface px-8 py-4 rounded-full font-bold text-base hover:opacity-90 transition-opacity">
+          Contact Us
+        </a>
+      </div>
+    </section>
+  </div>
+</Layout>

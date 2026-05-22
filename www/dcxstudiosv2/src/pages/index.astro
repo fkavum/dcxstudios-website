@@ -1,0 +1,23 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Hero from '../components/home/Hero.astro';
+import Gallery from '../components/Gallery.astro';
+import OurGames from '../components/home/OurGames.astro';
+import About from '../components/home/About.astro';
+import Contact from '../components/home/Contact.astro';
+import CommunityCta from '../components/home/CommunityCta.astro';
+import { getCollection } from 'astro:content';
+
+const games = await getCollection('games');
+const crossle = games.find(g => g.id === 'crossle');
+const galleryItems = crossle?.data.gallery ?? [];
+---
+
+<Layout title="DCX Studios — Independent Mobile Game Studio">
+  <Hero />
+  <Gallery items={galleryItems} />
+  <OurGames />
+  <About />
+  <Contact />
+  <CommunityCta />
+</Layout>

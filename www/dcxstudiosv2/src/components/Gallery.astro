@@ -1,0 +1,242 @@
+---
+export interface GalleryItem {
+  id: string;
+  src: string;
+  alt: string;
+  title: string;
+  description: string;
+  tag: string;
+  type: 'image' | 'video';
+}
+
+interface Props {
+  items: GalleryItem[];
+  title?: string;
+  subtitle?: string;
+  sectionId?: string;
+}
+
+const {
+  items,
+  title = 'Gallery & Media',
+  subtitle = 'A closer look at the world of Crossle.',
+  sectionId = 'gallery-app',
+} = Astro.props;
+---
+
+<section id={sectionId} class="bg-background-light w-full py-16 lg:py-24">
+  <div class="container mx-auto px-6">
+    <div class="text-center mb-10 lg:mb-14">
+      <h2 class="text-4xl lg:text-5xl font-black tracking-tight text-dark-surface">{title}</h2>
+      <p class="mt-3 text-sm lg:text-base text-dark-surface/60">{subtitle}</p>
+    </div>
+
+    <div class="grid gap-6 lg:grid-cols-[minmax(0,1fr)_270px] items-start">
+      <!-- Main Display -->
+      <div class="rounded-3xl overflow-hidden bg-white border border-gray-200 shadow-lg gallery-hover-group">
+        <div
+          class="relative bg-gradient-to-br from-accent-gray to-gray-100 flex items-center justify-center overflow-hidden"
+          style="height: 600px;"
+        >
+          <div id={`${sectionId}-main`} class="w-full h-full flex items-center justify-center"></div>
+
+          <button
+            id={`${sectionId}-prev`}
+            class="gallery-nav-arrow absolute left-4 top-1/2 -translate-y-1/2 w-12 h-12 rounded-full bg-white/90 backdrop-blur-sm shadow-lg border border-gray-200 items-center justify-center hover:scale-110 transition-transform z-10"
+            aria-label="Previous"
+            style="display: none;"
+          >
+            <svg class="w-6 h-6 text-dark-surface" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/>
+            </svg>
+          </button>
+
+          <button
+            id={`${sectionId}-next`}
+            class="gallery-nav-arrow absolute right-4 top-1/2 -translate-y-1/2 w-12 h-12 rounded-full bg-white/90 backdrop-blur-sm shadow-lg border border-gray-200 items-center justify-center hover:scale-110 transition-transform z-10"
+            aria-label="Next"
+          >
+            <svg class="w-6 h-6 text-dark-surface" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
+            </svg>
+          </button>
+
+          <div
+            id={`${sectionId}-counter`}
+            class="absolute top-4 right-4 px-3 py-1.5 rounded-full bg-black/60 backdrop-blur-sm text-white text-sm font-medium z-10"
+          >
+            1 / {items.length}
+          </div>
+        </div>
+
+        <!-- Info Panel -->
+        <div id={`${sectionId}-info`} class="px-6 py-5 border-t border-gray-100 min-h-[88px]"></div>
+      </div>
+
+      <!-- Thumbnails -->
+      <div
+        id={`${sectionId}-thumbs`}
+        class="flex flex-row lg:flex-col gap-3 overflow-x-auto lg:overflow-x-visible overflow-y-visible lg:overflow-y-auto scrollbar-thin p-1 -m-1 pb-2 lg:pb-1"
+      ></div>
+    </div>
+
+    <div class="mt-6 text-center">
+      <p class="text-xs text-dark-surface/40">Use arrow keys to navigate • Click thumbnails to select</p>
+    </div>
+  </div>
+</section>
+
+<script define:vars={{ galleryItems: items, galleryId: sectionId }}>
+  (function () {
+    const mainEl = document.getElementById(galleryId + '-main');
+    const prevBtn = document.getElementById(galleryId + '-prev');
+    const nextBtn = document.getElementById(galleryId + '-next');
+    const counterEl = document.getElementById(galleryId + '-counter');
+    const infoEl = document.getElementById(galleryId + '-info');
+    const thumbsEl = document.getElementById(galleryId + '-thumbs');
+
+    if (!mainEl) return;
+
+    let selectedId = galleryItems[0].id;
+
+    function getItem() {
+      return galleryItems.find(function (i) { return i.id === selectedId; }) || galleryItems[0];
+    }
+
+    function getIndex() {
+      return galleryItems.findIndex(function (i) { return i.id === selectedId; });
+    }
+
+    function renderMain() {
+      var item = getItem();
+      var index = getIndex();
+
+      mainEl.innerHTML = '';
+
+      if (item.type === 'video') {
+        var video = document.createElement('video');
+        video.src = item.src;
+        video.className = 'w-full h-full object-contain';
+        video.autoplay = true;
+        video.loop = true;
+        video.muted = true;
+        video.playsInline = true;
+        mainEl.appendChild(video);
+      } else {
+        var img = document.createElement('img');
+        img.src = item.src;
+        img.alt = item.alt;
+        img.className = 'w-full h-full object-contain';
+        mainEl.appendChild(img);
+      }
+
+      counterEl.textContent = (index + 1) + ' / ' + galleryItems.length;
+      prevBtn.style.display = index > 0 ? 'flex' : 'none';
+      nextBtn.style.display = index < galleryItems.length - 1 ? 'flex' : 'none';
+
+      renderInfo(item);
+      updateThumbStates();
+    }
+
+    function renderInfo(item) {
+      var isVideo = item.type === 'video';
+      var iconSvg = isVideo
+        ? '<svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 text-dark-surface" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/><path stroke-linecap="round" stroke-linejoin="round" d="M15.91 11.672a.375.375 0 010 .656l-5.603 3.113a.375.375 0 01-.557-.328V8.887c0-.286.307-.466.557-.328l5.603 3.113z"/></svg>'
+        : '<svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 text-dark-surface" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M10.5 1.5H8.25A2.25 2.25 0 006 3.75v16.5a2.25 2.25 0 002.25 2.25h7.5A2.25 2.25 0 0018 20.25V3.75a2.25 2.25 0 00-2.25-2.25H13.5m-3 0V3h3V1.5m-3 0h3m-3 18.75h3"/></svg>';
+
+      infoEl.innerHTML =
+        '<div class="flex items-start gap-4">' +
+          '<div class="w-10 h-10 rounded-xl bg-primary/10 flex items-center justify-center shrink-0 mt-0.5">' + iconSvg + '</div>' +
+          '<div class="flex-1 min-w-0">' +
+            '<div class="flex items-center gap-2 mb-1">' +
+              '<h3 class="font-bold text-dark-surface text-base">' + item.title + '</h3>' +
+              '<span class="text-xs font-medium px-2 py-0.5 rounded-full bg-accent-gray text-dark-surface/60 shrink-0">' + item.tag + '</span>' +
+            '</div>' +
+            '<p class="text-sm text-dark-surface/60 leading-relaxed">' + item.description + '</p>' +
+          '</div>' +
+        '</div>';
+    }
+
+    function buildThumbs() {
+      thumbsEl.innerHTML = '';
+      galleryItems.forEach(function (item) {
+        var btn = document.createElement('button');
+        btn.dataset.thumbId = item.id;
+        btn.className = 'group shrink-0 lg:w-full w-36 text-left rounded-2xl overflow-hidden bg-white border-2 shadow-md transition-all duration-300 focus:outline-none border-gray-200 hover:border-gray-300 hover:shadow-lg hover:scale-[1.02]';
+
+        var mediaWrap = document.createElement('div');
+        mediaWrap.className = 'w-full h-36 bg-gradient-to-br from-accent-gray to-gray-100 overflow-hidden flex items-center justify-center';
+
+        var mediaEl;
+        if (item.type === 'video') {
+          mediaEl = document.createElement('video');
+          mediaEl.src = item.src;
+          mediaEl.muted = true;
+          mediaEl.preload = 'metadata';
+        } else {
+          mediaEl = document.createElement('img');
+          mediaEl.src = item.src;
+          mediaEl.alt = item.alt;
+        }
+        mediaEl.className = 'w-full h-full object-contain transition-transform duration-500 group-hover:scale-105 brightness-90 group-hover:brightness-100';
+        mediaWrap.appendChild(mediaEl);
+        btn.appendChild(mediaWrap);
+
+        var titleWrap = document.createElement('div');
+        titleWrap.className = 'px-3 py-2.5';
+        var p = document.createElement('p');
+        p.className = 'text-xs font-semibold transition-colors duration-200 line-clamp-2 text-dark-surface group-hover:text-primary';
+        p.textContent = item.title;
+        titleWrap.appendChild(p);
+        btn.appendChild(titleWrap);
+
+        btn.addEventListener('click', function () {
+          selectedId = item.id;
+          renderMain();
+        });
+
+        thumbsEl.appendChild(btn);
+      });
+    }
+
+    function updateThumbStates() {
+      var thumbs = thumbsEl.querySelectorAll('[data-thumb-id]');
+      thumbs.forEach(function (btn) {
+        var isSelected = btn.dataset.thumbId === selectedId;
+        if (isSelected) {
+          btn.classList.add('ring-2', 'ring-primary', 'border-primary', 'scale-[1.02]');
+          btn.classList.remove('border-gray-200');
+          var p = btn.querySelector('p');
+          if (p) { p.classList.add('text-primary'); p.classList.remove('text-dark-surface'); }
+          var media = btn.querySelector('img, video');
+          if (media) { media.classList.add('brightness-100'); media.classList.remove('brightness-90'); }
+        } else {
+          btn.classList.remove('ring-2', 'ring-primary', 'border-primary', 'scale-[1.02]');
+          btn.classList.add('border-gray-200');
+          var p = btn.querySelector('p');
+          if (p) { p.classList.remove('text-primary'); p.classList.add('text-dark-surface'); }
+          var media = btn.querySelector('img, video');
+          if (media) { media.classList.remove('brightness-100'); media.classList.add('brightness-90'); }
+        }
+      });
+    }
+
+    prevBtn.addEventListener('click', function () {
+      var index = getIndex();
+      if (index > 0) { selectedId = galleryItems[index - 1].id; renderMain(); }
+    });
+
+    nextBtn.addEventListener('click', function () {
+      var index = getIndex();
+      if (index < galleryItems.length - 1) { selectedId = galleryItems[index + 1].id; renderMain(); }
+    });
+
+    document.addEventListener('keydown', function (e) {
+      if (e.key === 'ArrowLeft') { var i = getIndex(); if (i > 0) { selectedId = galleryItems[i - 1].id; renderMain(); } }
+      if (e.key === 'ArrowRight') { var i = getIndex(); if (i < galleryItems.length - 1) { selectedId = galleryItems[i + 1].id; renderMain(); } }
+    });
+
+    buildThumbs();
+    renderMain();
+  })();
+</script>

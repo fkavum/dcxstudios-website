@@ -1,0 +1,32 @@
+---
+import { getCollection } from 'astro:content';
+import GameCard from '../GameCard.astro';
+
+const games = await getCollection('games');
+games.sort((a, b) => (a.data.order ?? 0) - (b.data.order ?? 0));
+---
+
+<section id="our-games" class="py-20 lg:py-32 bg-white">
+  <div class="container mx-auto px-6">
+    <div class="text-center max-w-2xl mx-auto mb-16">
+      <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-dark-surface/5 border border-dark-surface/10 mb-6">
+        <span class="text-sm font-medium text-dark-surface/60">Our Games</span>
+      </div>
+      <h2 class="text-4xl lg:text-5xl font-black tracking-tight text-dark-surface mb-4">Games We've Created</h2>
+      <p class="text-lg text-dark-surface/60">Each game is crafted with passion, innovation, and a commitment to delivering unforgettable experiences.</p>
+    </div>
+
+    <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-5xl mx-auto">
+      {games.map(game => <GameCard game={game} />)}
+    </div>
+
+    <div class="text-center mt-12">
+      <a
+        href="/games"
+        class="inline-flex items-center gap-2 px-8 py-4 rounded-full bg-dark-surface text-white font-bold text-base hover:opacity-90 transition-opacity duration-200"
+      >
+        View All Games
+      </a>
+    </div>
+  </div>
+</section>

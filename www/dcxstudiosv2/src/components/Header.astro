@@ -1,0 +1,120 @@
+---
+import Icon from './Icon.astro';
+
+const navLinks = [
+  { href: '/#about', label: 'About' },
+  { href: '/#gallery-app', label: 'Gallery' },
+  { href: '/games', label: 'Games' },
+  { href: '/#contact', label: 'Contact' },
+];
+---
+
+<header class="w-full backdrop-blur-md bg-white/95 border-b border-gray-200 sticky top-0 z-[80]">
+  <div class="container mx-auto px-4 lg:px-6 py-3 lg:py-4 flex items-center justify-between relative z-[80]">
+    <!-- Logo -->
+    <a href="/" class="flex gap-2 items-center">
+      <div class="size-12 rounded-full flex items-center justify-center text-primary bg-dark-surface">
+        <Icon name="cube-transparent" class="w-7 h-7" />
+      </div>
+      <div class="font-bold text-xl">DCX Studios</div>
+    </a>
+
+    <!-- Desktop Menu -->
+    <nav class="hidden md:block">
+      <ul class="flex space-x-6">
+        {navLinks.map(link => (
+          <li>
+            <a
+              href={link.href}
+              class="text-dark-surface hover:text-dark-surface/70 transition-colors duration-200 font-medium"
+            >
+              {link.label}
+            </a>
+          </li>
+        ))}
+      </ul>
+    </nav>
+
+    <div class="flex items-center gap-3">
+      <!-- Mobile Menu Toggle -->
+      <button
+        id="mobile-menu-toggle"
+        type="button"
+        class="md:hidden w-10 h-10 flex items-center justify-center rounded-lg hover:bg-gray-100 transition-colors duration-200 relative z-[80]"
+        aria-label="Toggle menu"
+      >
+        <span id="icon-menu">
+          <Icon name="bars-3" class="w-6 h-6 text-dark-surface" />
+        </span>
+        <span id="icon-close" class="hidden">
+          <Icon name="x-mark" class="w-6 h-6 text-dark-surface" />
+        </span>
+      </button>
+    </div>
+  </div>
+</header>
+
+<!-- Mobile Menu Overlay & Drawer -->
+<div
+  id="mobile-menu-overlay"
+  class="mobile-menu-overlay fixed inset-0 bg-black/50 backdrop-blur-sm z-[60] md:hidden"
+></div>
+<nav
+  id="mobile-menu-drawer"
+  class="mobile-menu-drawer fixed top-0 left-0 right-0 h-screen bg-white z-[70] md:hidden overflow-y-auto pt-[73px]"
+>
+  <ul class="flex flex-col p-6 space-y-1">
+    {navLinks.map(link => (
+      <li>
+        <a
+          href={link.href}
+          class="mobile-link block text-dark-surface hover:text-primary transition-colors duration-200 font-semibold text-lg py-4 px-4 rounded-xl hover:bg-gray-50 active:bg-gray-100"
+        >
+          {link.label}
+        </a>
+      </li>
+    ))}
+  </ul>
+</nav>
+
+<script>
+  const toggleBtn = document.getElementById('mobile-menu-toggle');
+  const overlay = document.getElementById('mobile-menu-overlay');
+  const drawer = document.getElementById('mobile-menu-drawer');
+  const iconMenu = document.getElementById('icon-menu');
+  const iconClose = document.getElementById('icon-close');
+  const mobileLinks = document.querySelectorAll('.mobile-link');
+
+  let isOpen = false;
+
+  function toggleMenu() {
+    isOpen = !isOpen;
+    if (isOpen) {
+      overlay!.classList.add('open');
+      drawer!.classList.add('open');
+      iconMenu!.classList.add('hidden');
+      iconClose!.classList.remove('hidden');
+      document.body.style.overflow = 'hidden';
+    } else {
+      overlay!.classList.remove('open');
+      drawer!.classList.remove('open');
+      iconMenu!.classList.remove('hidden');
+      iconClose!.classList.add('hidden');
+      document.body.style.overflow = '';
+    }
+  }
+
+  toggleBtn?.addEventListener('click', toggleMenu);
+  overlay?.addEventListener('click', toggleMenu);
+
+  mobileLinks.forEach(link => {
+    link.addEventListener('click', () => {
+      isOpen = false;
+      overlay!.classList.remove('open');
+      drawer!.classList.remove('open');
+      iconMenu!.classList.remove('hidden');
+      iconClose!.classList.add('hidden');
+      document.body.style.overflow = '';
+    });
+  });
+</script>

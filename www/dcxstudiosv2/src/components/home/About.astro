@@ -1,0 +1,51 @@
+---
+import Icon from '../Icon.astro';
+
+const values = [
+  { icon: 'light-bulb', title: 'Innovation', description: 'We constantly push the boundaries of game design, exploring new mechanics and creative solutions.' },
+  { icon: 'heart', title: 'Passion', description: 'Every game we create is a labor of love, built by people who genuinely care about the craft.' },
+  { icon: 'users', title: 'Community', description: 'Our players are at the heart of everything we do. We listen, learn, and grow together.' },
+  { icon: 'sparkles', title: 'Quality', description: 'We never compromise on quality. Every detail matters, from gameplay to visuals to sound.' },
+] as const;
+---
+
+<section id="about" class="py-20 lg:py-32 bg-dark-surface relative overflow-hidden text-white">
+  <div class="absolute top-0 right-0 w-[500px] h-[500px] bg-primary/10 rounded-full blur-[120px] translate-x-1/2 -translate-y-1/2 pointer-events-none"></div>
+  <div class="absolute bottom-0 left-0 w-[400px] h-[400px] bg-purple-500/10 rounded-full blur-[100px] -translate-x-1/2 translate-y-1/2 pointer-events-none"></div>
+
+  <div class="container mx-auto px-6 relative z-10">
+    <div class="text-center max-w-3xl mx-auto mb-16">
+      <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/10 border border-white/10 mb-6">
+        <Icon name="information-circle" class="w-4 h-4 text-white/60" />
+        <span class="text-sm font-medium text-white/60">About Us</span>
+      </div>
+
+      <h2 class="text-4xl lg:text-5xl font-black tracking-tight text-white mb-6">Crafting Games That Matter</h2>
+      <p class="text-lg text-white/70 leading-relaxed">
+        DCX Studios was born from a simple idea: games should be more than just entertainment—they should be experiences that stay with you. Founded in 2024, we're a passionate indie studio dedicated to creating unique, engaging experiences that bring joy to players worldwide.
+      </p>
+    </div>
+
+    <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+      {values.map(value => (
+        <div class="group p-8 rounded-3xl bg-white/5 border border-white/10 hover:border-primary/50 transition-all duration-300 hover:shadow-xl hover:shadow-primary/5 hover:-translate-y-1">
+          <div class="w-16 h-16 rounded-2xl bg-primary/20 flex items-center justify-center mb-6 group-hover:scale-110 group-hover:bg-primary transition-all duration-300">
+            <Icon name={value.icon} class="w-8 h-8 text-primary group-hover:text-dark-surface transition-colors duration-300" />
+          </div>
+          <h3 class="text-xl font-bold text-white mb-3">{value.title}</h3>
+          <p class="text-white/60 leading-relaxed">{value.description}</p>
+        </div>
+      ))}
+    </div>
+
+    <div class="text-center mt-12">
+      <a
+        href="/about"
+        class="inline-flex items-center gap-2 px-6 py-3 rounded-full border border-primary/50 text-primary font-semibold hover:bg-primary hover:text-dark-surface transition-all duration-300"
+      >
+        Learn more about us
+        <Icon name="arrow-right" class="w-4 h-4" />
+      </a>
+    </div>
+  </div>
+</section>

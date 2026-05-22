@@ -1,0 +1,58 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Icon from '../components/Icon.astro';
+
+const methods = [
+  { icon: 'envelope', label: 'Email', value: 'dcxstudios@gmail.com', href: 'mailto:dcxstudios@gmail.com' },
+  { icon: 'discord', label: 'Discord', value: 'discord.gg/vsWZqhUHA8', href: 'https://discord.gg/vsWZqhUHA8' },
+  { icon: 'linkedin', label: 'LinkedIn', value: 'dcx-studios', href: 'https://www.linkedin.com/company/dcx-studios/' },
+] as const;
+---
+
+<Layout
+  title="Contact Us — DCX Studios"
+  description="Get in touch with DCX Studios. Report bugs, share feedback, or propose collaborations."
+>
+  <div class="min-h-screen">
+    <!-- Hero -->
+    <section class="relative bg-dark-surface text-white py-20 lg:py-32 overflow-hidden">
+      <div class="absolute -bottom-24 -left-24 w-96 h-96 bg-primary/20 rounded-full blur-[120px]"></div>
+      <div class="absolute -top-24 -right-24 w-96 h-96 bg-primary/20 rounded-full blur-[120px]"></div>
+
+      <div class="container mx-auto px-6 relative z-10">
+        <div class="max-w-4xl mx-auto text-center">
+          <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/10 border border-white/10 backdrop-blur-sm mb-6">
+            <Icon name="chat-bubble-left-right" class="w-4 h-4" />
+            <span class="text-sm font-medium">Get In Touch</span>
+          </div>
+          <h1 class="text-5xl lg:text-7xl font-black leading-tight tracking-tight mb-6">Let's Talk</h1>
+          <p class="text-xl text-white/80 leading-relaxed max-w-2xl mx-auto">
+            Have a question, feedback, or just want to say hi? We'd love to hear from you.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Contact Methods -->
+    <section class="py-20 bg-background-light">
+      <div class="container mx-auto px-6">
+        <div class="grid md:grid-cols-3 gap-8 max-w-5xl mx-auto">
+          {methods.map(method => (
+            <a
+              href={method.href}
+              target="_blank"
+              rel="noopener noreferrer"
+              class="group p-8 rounded-3xl bg-white border border-gray-200 hover:border-primary transition-all duration-300 hover:shadow-xl hover:-translate-y-1 text-center"
+            >
+              <div class="w-16 h-16 rounded-2xl bg-primary/10 flex items-center justify-center mb-6 mx-auto group-hover:scale-110 transition-transform duration-300">
+                <Icon name={method.icon} class="w-8 h-8 text-primary" />
+              </div>
+              <h3 class="text-lg font-bold text-dark-surface mb-2">{method.label}</h3>
+              <p class="text-dark-surface/70">{method.value}</p>
+            </a>
+          ))}
+        </div>
+      </div>
+    </section>
+  </div>
+</Layout>
