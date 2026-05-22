@@ -1,35 +1,39 @@
 ---
 ---
 
-<div class="flex flex-col">
-  <!-- Hero -->
-  <section class="relative bg-dark-surface text-white py-20 lg:py-32 overflow-hidden rounded-b-[3rem]">
+<!-- Outer wrapper fills exactly the remaining viewport after the sticky header -->
+<div class="flex flex-col" style="height: calc(100svh - var(--header-height))">
+
+  <!-- Hero (dark) — takes all space not used by the stats bar -->
+  <section class="relative bg-dark-surface text-white overflow-hidden rounded-b-[3rem] flex-1 min-h-0 flex items-center py-6 lg:py-8">
     <div class="absolute -bottom-24 -left-24 w-64 h-64 bg-primary/20 rounded-full blur-[100px]"></div>
     <div class="absolute -top-24 -right-24 w-64 h-64 bg-primary/20 rounded-full blur-[100px]"></div>
 
     <div class="container mx-auto px-6 relative z-10">
-      <div class="grid lg:grid-cols-2 gap-20 items-center">
-        <div class="flex flex-col gap-8 text-center lg:text-left">
+      <div class="grid lg:grid-cols-2 gap-8 lg:gap-12 items-center">
+
+        <!-- Text content -->
+        <div class="flex flex-col gap-4 lg:gap-5 text-center lg:text-left">
           <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/10 border border-white/10 w-fit mx-auto lg:mx-0 backdrop-blur-sm">
             <span class="w-2 h-2 rounded-full bg-primary animate-pulse"></span>
             <span id="hero-version-badge" class="text-xs font-medium text-white/90 uppercase tracking-wider">New Release v1.0</span>
           </div>
 
-          <h1 class="text-5xl lg:text-7xl font-black leading-[0.95] tracking-tight">
+          <h1 class="text-4xl sm:text-5xl lg:text-5xl xl:text-6xl font-black leading-[0.95] tracking-tight">
             Unleash your <br>
             <span class="text-transparent bg-clip-text bg-gradient-to-r from-primary to-white">inner genius.</span>
           </h1>
 
-          <p class="text-lg text-white/70 max-w-xl mx-auto lg:mx-0 leading-relaxed">
+          <p class="text-base lg:text-lg text-white/70 max-w-xl mx-auto lg:mx-0 leading-relaxed">
             Crossle isn't just a puzzle game. It's a daily ritual for your brain. Dive into infinite procedural levels and compete globally.
           </p>
 
-          <div class="flex flex-wrap justify-center lg:justify-start gap-4 pt-4">
+          <div class="flex flex-wrap justify-center lg:justify-start gap-3">
             <a
               href="https://apps.apple.com/tr/app/crossle/id6751605835"
               target="_blank"
               rel="noopener noreferrer"
-              class="bg-primary text-dark-surface px-8 py-4 rounded-full font-bold text-base hover:opacity-90 transition-opacity duration-200"
+              class="bg-primary text-dark-surface px-6 py-3 rounded-full font-bold text-sm hover:opacity-90 transition-opacity duration-200"
             >
               App Store
             </a>
@@ -37,48 +41,51 @@
               href="https://play.google.com/store/apps/details?id=com.dcxstudios.dcm"
               target="_blank"
               rel="noopener noreferrer"
-              class="bg-primary text-dark-surface px-8 py-4 rounded-full font-bold text-base hover:opacity-90 transition-opacity duration-200"
+              class="bg-primary text-dark-surface px-6 py-3 rounded-full font-bold text-sm hover:opacity-90 transition-opacity duration-200"
             >
               Google Play
             </a>
           </div>
         </div>
 
-        <div class="w-full max-w-md mx-auto rotate-5 hover:rotate-0 transition-transform duration-500">
+        <!-- Phone mockup — hidden on mobile, height-constrained on desktop -->
+        <div class="hidden lg:flex items-center justify-center">
           <img
             src="/images/hero-mockup.png"
             alt="Crossle mobile word puzzle game screenshot"
             width="448"
             height="896"
             loading="eager"
-            class="w-full h-auto rounded-3xl shadow-2xl"
+            class="w-auto rounded-3xl shadow-2xl rotate-5 hover:rotate-0 transition-transform duration-500"
+            style="max-height: min(48svh, 360px); max-width: 240px"
           />
         </div>
+
       </div>
     </div>
   </section>
 
-  <!-- Stats Bar -->
-  <section class="bg-white w-full border-b border-gray-200">
-    <div class="container mx-auto flex justify-center py-12">
-      <div class="flex flex-col gap-2 items-center pr-6">
-        <div id="hero-rating" class="text-3xl text-dark-surface font-semibold">4.8/5</div>
-        <p class="text-sm text-dark-surface">App Store Rating</p>
+  <!-- Stats bar — fixed height, no overflow -->
+  <section class="bg-white w-full border-b border-gray-200 shrink-0">
+    <div class="container mx-auto flex justify-center py-4 lg:py-5">
+      <div class="flex flex-col gap-1 items-center pr-6">
+        <div id="hero-rating" class="text-2xl lg:text-3xl text-dark-surface font-semibold">4.8/5</div>
+        <p class="text-xs lg:text-sm text-dark-surface">App Store Rating</p>
       </div>
-      <div class="flex flex-col gap-2 items-center border-x border-gray-200 px-6">
-        <div id="hero-downloads" class="text-3xl text-dark-surface font-semibold">100+</div>
-        <p class="text-sm text-dark-surface">Downloads</p>
+      <div class="flex flex-col gap-1 items-center border-x border-gray-200 px-6">
+        <div id="hero-downloads" class="text-2xl lg:text-3xl text-dark-surface font-semibold">100+</div>
+        <p class="text-xs lg:text-sm text-dark-surface">Downloads</p>
       </div>
-      <div class="flex flex-col gap-2 items-center pl-6">
-        <div class="text-3xl text-dark-surface font-semibold">#1</div>
-        <p class="text-sm text-dark-surface">Puzzle Game</p>
+      <div class="flex flex-col gap-1 items-center pl-6">
+        <div class="text-2xl lg:text-3xl text-dark-surface font-semibold">#1</div>
+        <p class="text-xs lg:text-sm text-dark-surface">Puzzle Game</p>
       </div>
     </div>
   </section>
+
 </div>
 
 <script>
-  // Fetch live ratings from iTunes API (CORS-accessible, no SSR needed)
   fetch('https://itunes.apple.com/lookup?id=6751605835&country=us')
     .then(function (r) { return r.json(); })
     .then(function (data) {
@@ -87,7 +94,6 @@
         var ratingEl = document.getElementById('hero-rating');
         var downloadsEl = document.getElementById('hero-downloads');
         var versionEl = document.getElementById('hero-version-badge');
-
         if (ratingEl && app.averageUserRating) {
           ratingEl.textContent = Number(app.averageUserRating).toFixed(1) + '/5';
         }
@@ -100,5 +106,5 @@
         }
       }
     })
-    .catch(function () { /* fail silently, keep defaults */ });
+    .catch(function () {});
 </script>

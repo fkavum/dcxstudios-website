@@ -1,5 +1,9 @@
 @import "tailwindcss";
 
+/* Header height used by the hero section to fill the viewport */
+:root { --header-height: 73px; }
+@media (min-width: 1024px) { :root { --header-height: 81px; } }
+
 @theme {
   --font-sans: 'Inter', sans-serif;
   --color-primary: #ffdb2d;
