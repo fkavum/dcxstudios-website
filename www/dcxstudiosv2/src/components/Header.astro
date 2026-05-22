@@ -1,5 +1,6 @@
 ---
 import Icon from './Icon.astro';
+import common from '../data/common.json';
 
 const navLinks = [
   { href: '/#gallery-app', label: 'Gallery' },
@@ -13,7 +14,7 @@ const navLinks = [
   <div class="container mx-auto px-4 lg:px-6 py-3 lg:py-4 flex items-center justify-between relative z-[80]">
     <!-- Logo -->
     <a href="/" class="flex gap-2 items-center">
-      <img src="/logo.png" alt="DCX Studios logo" class="size-11 rounded-xl object-cover" />
+      <img src={common.studioLogo} alt="DCX Studios logo" class="size-11 rounded-xl object-cover" />
       <div class="font-bold text-xl">DCX Studios</div>
     </a>
 

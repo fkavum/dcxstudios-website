@@ -2,6 +2,7 @@
 import '../styles/global.css';
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
+import common from '../data/common.json';
 
 interface Props {
   title: string;
@@ -31,8 +32,8 @@ const canonicalURL = new URL(Astro.url.pathname, 'https://dcxstudios.org');
     <meta property="og:type" content="website" />
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:site" content="@dcxstudios" />
-    <link rel="icon" type="image/png" href="/logo.png" />
-    <link rel="apple-touch-icon" href="/logo.png" />
+    <link rel="icon" type="image/png" href={common.studioLogo} />
+    <link rel="apple-touch-icon" href={common.studioLogo} />
     <link rel="canonical" href={canonicalURL} />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
