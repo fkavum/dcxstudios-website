@@ -1,0 +1,22 @@
+version: '3.8'
+
+services:
+  dcxstudios:
+    build:
+      context: ..
+      dockerfile: docker/Dockerfile
+    container_name: astro_dcxstudios
+    # ports:
+    #   - "5322:80"
+    restart: always
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "10m"
+        max-file: "3"
+
+    # Traefik labels (uncomment and configure if using Traefik):
+    # labels:
+    #   - "traefik.enable=true"
+    #   - "traefik.http.routers.dcxstudios.rule=Host(`dcxstudios.org`)"
+    #   - "traefik.http.services.dcxstudios.loadbalancer.server.port=80"
