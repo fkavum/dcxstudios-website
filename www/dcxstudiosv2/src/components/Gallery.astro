@@ -109,18 +109,12 @@ const { items, sectionId = 'gallery-app', game } = Astro.props;
       </div>
     )}
 
-    <!-- Gallery sub-heading -->
-    <div class="text-center mb-8 lg:mb-10">
-      <h3 class="text-2xl lg:text-3xl font-black tracking-tight text-dark-surface">Gallery & Media</h3>
-      <p class="mt-2 text-sm lg:text-base text-dark-surface/60">A closer look at the world of {game?.name ?? 'the game'}.</p>
-    </div>
-
     <div class="grid gap-6 lg:grid-cols-[minmax(0,1fr)_270px] items-start">
       <!-- Main Display -->
       <div class="rounded-3xl overflow-hidden bg-white border border-gray-200 shadow-lg gallery-hover-group">
         <div
           class="relative bg-gradient-to-br from-accent-gray to-gray-100 flex items-center justify-center overflow-hidden"
-          style="height: 600px;"
+          style="height: min(60svh, 600px);"
         >
           <div id={`${sectionId}-main`} class="relative w-full h-full flex items-center justify-center"></div>
 
@@ -160,7 +154,8 @@ const { items, sectionId = 'gallery-app', game } = Astro.props;
       <!-- Thumbnails (scrollable) -->
       <div
         id={`${sectionId}-thumbs`}
-        class="flex flex-row lg:flex-col gap-3 overflow-x-auto lg:overflow-x-visible overflow-y-visible lg:overflow-y-auto lg:max-h-[600px] scrollbar-thin p-1 -m-1 pb-2 lg:pb-1"
+        class="flex flex-row lg:flex-col gap-3 overflow-x-auto lg:overflow-x-visible overflow-y-visible lg:overflow-y-auto scrollbar-thin p-1 -m-1 pb-2 lg:pb-1"
+        style="max-height: min(60svh, 600px);"
       ></div>
     </div>
 

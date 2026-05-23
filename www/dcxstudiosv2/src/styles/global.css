@@ -202,10 +202,10 @@ html { scroll-behavior: smooth; }
 }
 
 .mobile-menu-drawer {
-  transform: translateY(-100%);
+  transform: translateX(-100%);
   transition: transform 0.3s ease;
 }
 
 .mobile-menu-drawer.open {
-  transform: translateY(0);
+  transform: translateX(0);
 }

@@ -6,8 +6,8 @@ services:
       context: ..
       dockerfile: docker/Dockerfile
     container_name: astro_dcxstudios
-    # ports:
-    #   - "5322:80"
+    ports:
+       - "5322:80"
     restart: always
     logging:
       driver: "json-file"
