@@ -10,7 +10,7 @@
         "Unity",
         "CI/CD"
       ],
-      "description": "I did crossle.",
+      "description": "Solo-built <span class=\"highlight\">Crossle</span> — an online real-time PvP word game on iOS &amp; Android. Full stack: Unity client, .NET game server, ASP.NET REST API, MySQL/Redis, Docker, CI/CD. <span class=\"highlight\">Everything</span> from game design to DevOps.",
       "caseStudySlug": "dcxstudios"
     },
     {
@@ -91,7 +91,7 @@
     {
       "platform": "Github",
       "url": "https://github.com/fkavum",
-      "icon": "/icons/instagram-svgrepo-com.svg"
+      "icon": "/icons/github-colored-icon.png"
     },
     {
       "platform": "My Game Studio",

@@ -1,0 +1,62 @@
+---
+import '../styles/global.css';
+
+interface Props {
+  title?: string;
+  description?: string;
+}
+
+const {
+  title = 'Crossle — Online Word Duel',
+  description = 'The ultimate multiplayer word game. Compete in crossword-style duels, use strategy to outsmart your opponents, and climb the global ranks.',
+} = Astro.props;
+
+const canonicalURL = new URL(Astro.url.pathname, 'https://crossle.dcxstudios.org');
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content={description} />
+    <meta name="generator" content={Astro.generator} />
+
+    <link rel="canonical" href={canonicalURL} />
+
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content={canonicalURL} />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:image" content="https://crossle.dcxstudios.org/images/hero-mockup.png" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content="https://crossle.dcxstudios.org/images/hero-mockup.png" />
+
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "SoftwareApplication",
+        "name": "Crossle",
+        "applicationCategory": "GameApplication",
+        "operatingSystem": "iOS, Android",
+        "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
+        "aggregateRating": { "@type": "AggregateRating", "ratingValue": "4.8", "ratingCount": "1250" },
+        "description": "The ultimate multiplayer word game. Compete in crossword-style duels.",
+        "author": { "@type": "Organization", "name": "DCX Studios", "url": "https://dcxstudios.org" }
+      }
+    </script>
+
+    <link rel="icon" type="image/webp" href="/images/icon.webp" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
+    <link rel="preload" as="image" href="/images/hero-mockup.png" fetchpriority="high" />
+
+    <title>{title}</title>
+  </head>
+  <body class="bg-[#0f172a] text-[#f8fafc] font-sans antialiased">
+    <slot />
+  </body>
+</html>

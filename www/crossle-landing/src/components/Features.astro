@@ -1,0 +1,40 @@
+---
+const features = [
+  {
+    title: 'PvP Duels',
+    description: 'Challenge your friends or match with random opponents in real-time crossword battles.',
+    icon: '⚔️',
+  },
+  {
+    title: 'Strategy & Skill',
+    description: 'It\'s not just about big words. Use the board multipliers and block your opponent to win.',
+    icon: '🧠',
+  },
+  {
+    title: 'Global Rankings',
+    description: 'Climb the leaderboards and prove you are the best word master in the world.',
+    icon: '🏆',
+  },
+] as const;
+---
+
+<section class="py-24 bg-slate-800/30">
+  <div class="container mx-auto px-6">
+    <div class="text-center mb-16">
+      <h2 class="text-3xl lg:text-4xl font-bold mb-4 text-white">Why Play Crossle?</h2>
+      <p class="text-slate-400 text-lg">Discover the features that make Crossle the most addictive word game.</p>
+    </div>
+
+    <div class="grid md:grid-cols-3 gap-8">
+      {features.map(feature => (
+        <div class="flex flex-col items-center text-center p-8 rounded-2xl bg-slate-800 border border-slate-700 hover:scale-105 hover:border-indigo-500/50 transition-all duration-300">
+          <div class="w-16 h-16 rounded-2xl bg-yellow-400/10 flex items-center justify-center mb-6 text-3xl">
+            {feature.icon}
+          </div>
+          <h3 class="text-xl font-bold text-white mb-3">{feature.title}</h3>
+          <p class="text-slate-400 leading-relaxed">{feature.description}</p>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
