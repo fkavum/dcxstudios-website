@@ -22,8 +22,7 @@ When every site listed for an implementation is fully ✅ done, move its folder 
 
 **Active implementations:**
 - `implementations/content-bugs/` — Fix 6 live content errors across all active sites (🔲 not started)
-- `implementations/deprecated-cleanup/` — Delete `../www/dcxstudios` now; delete `../www/crossle-ui-nux` after crossle landing is done (🔲 partially blocked)
-- `implementations/crossle-landing-page/` — Build a real marketing page at crossle.dcxstudios.org; port content + assets from crossle-ui-nux (🔲 not started)
+- `implementations/deprecated-cleanup/` — Delete `../www/dcxstudios` now; delete `../www/crossle-ui-nux` (crossle-landing done — pending manual deletion) (🔲 partially done)
 - `implementations/portfolio-content/` — Fix placeholder description, GitHub icon, expand skills, add projects section (🔲 not started)
 - `implementations/dcxstudiosv2-identity/` — Rework hero + about section to have studio identity instead of single-game marketing (🔲 not started, depends on content-bugs Bug 1 + 2)
 
@@ -36,10 +35,11 @@ When every site listed for an implementation is fully ✅ done, move its folder 
 | portfolio | Astro.js + Tailwind + React + Vue + MDX | `../www/portfolio` | `dcxstudios.org` |
 | dcxstudiosv2 | Astro.js + Tailwind | `../www/dcxstudiosv2` | `fatihkavum.dcxstudios.org` |
 | crossle | Static HTML/CSS/JS | `../www/crossle` | `crossle.dcxstudios.org` |
+| crossle-landing | Astro.js + Tailwind | `../www/crossle-landing` | `crossle.dcxstudios.org` (ready to deploy) |
 | fallback | Static HTML | `../www/fallback` | nginx fallback only |
 
 **Deprecated (do not touch):**
-- `../www/crossle-ui-nux`
+- `../www/crossle-ui-nux` — pending deletion (crossle-landing is the replacement)
 - `../www/dcxstudios`
 
 ---

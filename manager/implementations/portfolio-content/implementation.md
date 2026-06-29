@@ -24,31 +24,6 @@ Example direction (adjust with real numbers):
 
 ---
 
-## 2. Fix GitHub Icon (`resume.json`)
-
-**File:** `../www/portfolio/src/data/resume.json`
-
-Change the GitHub social entry icon from:
-```json
-"icon": "/icons/instagram-svgrepo-com.svg"
-```
-to:
-```json
-"icon": "/icons/GitHub_Invertocat_Black.svg"
-```
-
-The correct file already exists at `../www/portfolio/public/icons/GitHub_Invertocat_Black.svg`.
-
-**Style note:** The icon is black. The portfolio has a dark background (`--bg: #0a0a12`). The `.social-icon` CSS sets `width: 24px; height: 24px` — check if the black icon is visible. If not, add a CSS filter to invert it:
-```css
-.social-icon[src*="GitHub"] {
-    filter: invert(1);
-}
-```
-Or better: use a white SVG. The file `GitHub_Invertocat_Black.svg` is black — open it and create a white version, or use `filter: invert(1)` globally on social icons since the background is always dark.
-
----
-
 ## 3. Expand Skills Section (`resume.json`)
 
 **File:** `../www/portfolio/src/data/resume.json`
