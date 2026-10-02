@@ -1,0 +1,27 @@
+version: '3.8'
+
+# play-crossle: the WebGL build is committed into www/play-crossle/ by hand — unzip the
+# Crossle-webgl-<env>-<n>-site.zip from dist.dcxstudios.org/Builds/Crossle/webgl/<n>/ into it.
+# Dokploy builds this image from the repo. Set PLAY_CROSSLE_TAG=prod|dev in the Dokploy service
+# environment (one service per env / domain) — it only names the container.
+services:
+  web-sunucum:
+    build:
+      context: "../.."
+      dockerfile: "./docker-files/play-crossle/Dockerfile"
+    container_name: static_play_crossle_site_container_${PLAY_CROSSLE_TAG:-prod}
+    restart: always
+    # Local test mapping only (registry general-manager/PORTS.md: play-crossle WebGL host = 20120 -> 80).
+    # Prod is Traefik-only, nothing is published on the host.
+    # ports:
+    #   - "${PLAY_CROSSLE_PORT:-20120}:80"
+    networks:
+      - dokploy-network
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "10m"
+        max-file: "3"
+networks:
+  dokploy-network:
+    external: true
